@@ -11,7 +11,10 @@ class Nav {
     this.children.push(instance);
 
     const li = document.createElement('li');
-    li.append(instance.title);
+    const icon = `
+      <i class="fa ${instance.icon}" aria-hidden="true"></i>
+    `;
+    li.insertAdjacentHTML('afterbegin', icon)
 
     li.addEventListener('click', () => {
       this.children.forEach(page => page.hide());
