@@ -46,8 +46,22 @@ class PlayerPage extends Page {
       this.play.insertAdjacentHTML('beforeend', '<i class="fa fa-play" aria-hidden="true"></i>');
       this.play.addEventListener('click', () => {
         this.player.playVideo();
+        this.play.style.display = 'none';
+        this.pause.style.display = 'block';
       });
       this.playButtons.append(this.play);
+    };
+
+    const setPauseButton = () => {
+      this.pause = document.createElement('button');
+      this.pause.insertAdjacentHTML('beforeend', '<i class="fa fa-pause" aria-hidden="true"></i>');
+      this.pause.addEventListener('click', () => {
+        this.player.pauseVideo();
+        this.pause.style.display = 'none';
+        this.play.style.display = 'block';
+      });
+      this.pause.style.display = 'none';
+      this.playButtons.append(this.pause);
     };
     
     const setForwardButton = () => {
@@ -74,6 +88,7 @@ class PlayerPage extends Page {
     setRepeatButton();
     setBackwardButton();
     setPlayButton();
+    setPauseButton();
     setForwardButton();
     setRandomButton();
 
