@@ -2,8 +2,12 @@ import styles from './Screen.module.scss';
 
 class Screen {
   constructor() {
-    this.self = document.createElement('section');
-    this.self.classList.add(styles.screen);
+    this.element = document.createElement('section');
+    this.element.classList.add(styles.screen);
+  }
+
+  append(element) {
+    this.element.append(element);
   }
 }
 
