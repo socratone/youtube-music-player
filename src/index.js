@@ -1,6 +1,9 @@
-import DrawButton from './DrawButton.js';
 import './index.scss';
+import Screen from './Screen.js';
 
-const button = new DrawButton();
-button.setScreen(document.getElementById('screen'));
-button.appendToParent(document.body);
+function init() {
+  const screen = new Screen();
+  document.body.append(screen.self);
+}
+
+init();

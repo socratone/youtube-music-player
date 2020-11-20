@@ -1,0 +1,11 @@
+.screen {
+  width: 100vw;
+  height: 100vh;
+  background-color: whitesmoke;
+}
+
+@media (min-width: 500px) {
+  .screen {
+    width: 500px;
+  }
+}

@@ -1,6 +1,11 @@
-#screen {
-  width: 200px;
-  height: 200px;
-  background-color: antiquewhite;
-  padding: 10px;
+body {
+  margin: 0;
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+}
+
+p {
+  margin: 0;
+  padding: 0;
 }
