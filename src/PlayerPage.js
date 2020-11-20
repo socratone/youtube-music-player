@@ -9,8 +9,6 @@ class PlayerPage extends Page {
   }
 
   appendYoutubeVideo() {
-    // const wrap = document.createElement('div');
-    // wrap.classList.add(styles['youtube-video-wrap']);
     const tag = `
       <div class="${styles.videoWrap}">
         <div class="${styles.video}" id="youtube-video"></div>
