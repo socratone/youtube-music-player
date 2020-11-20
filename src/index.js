@@ -5,7 +5,7 @@ import PlaylistPage from './PlaylistPage';
 import PlayerPage from './PlayerPage';
 import SearchPage from './SearchPage';
 
-let playlistPage, playerPage, searchPage;
+let player;
 
 function init() {
   const screen = new Screen();
@@ -13,12 +13,17 @@ function init() {
 
   const nav = new Nav();
 
-  playlistPage = new PlaylistPage();
-  playerPage = new PlayerPage();
-  searchPage = new SearchPage();
+  const playlistPage = new PlaylistPage();
+  const playerPage = new PlayerPage();
+  const searchPage = new SearchPage();
+
   playlistPage.hide();
+
   playerPage.show();
   playerPage.appendYoutubeVideo();
+  playerPage.setPlayer(player);
+  playerPage.appendPlayButtons();
+
   searchPage.hide();
 
   nav.append(playlistPage);
@@ -34,7 +39,6 @@ function init() {
 
 init();
 
-let player;
 window.onYouTubeIframeAPIReady = function() {
   player = new YT.Player('youtube-video', {
     videoId: 'QYNwbZHmh8g',
@@ -46,7 +50,7 @@ window.onYouTubeIframeAPIReady = function() {
 }
 
 function onPlayerReady(event) {
-  event.target.playVideo();
+  // event.target.playVideo();
 }
 
 function onPlayerStateChange(event) {
