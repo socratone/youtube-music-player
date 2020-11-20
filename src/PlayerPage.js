@@ -23,6 +23,11 @@ class PlayerPage extends Page {
   }
 
   appendPlayButtons() {
+    const setButtonWrap = () => {
+      this.playButtons = document.createElement('div');
+      this.playButtons.classList.add(styles.playButtons);
+    };
+
     const setRepeatButton = () => {
       this.repeat = document.createElement('button');
       this.repeat.insertAdjacentHTML('beforeend', '<i class="fa fa-expand" aria-hidden="true"></i>');
@@ -82,9 +87,7 @@ class PlayerPage extends Page {
       this.playButtons.append(this.random);
     };
 
-    this.playButtons = document.createElement('div');
-    this.playButtons.classList.add(styles.playButtons);
-
+    setButtonWrap();
     setRepeatButton();
     setBackwardButton();
     setPlayButton();
