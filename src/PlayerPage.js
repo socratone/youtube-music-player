@@ -102,14 +102,20 @@ class PlayerPage extends Page {
     const ul = document.createElement('ul');
     ul.classList.add(styles.cueList);
     videos.forEach(video => {
-      const li = `
-        <li>
-          <div><img src="https://picsum.photos/60" alt=""></div>
+      const thumbnail = document.createElement('div');
+      thumbnail.classList.add(styles.cueListThumbnail);
+      thumbnail.style.backgroundImage = "url(https://picsum.photos/60)";
+
+      const li = document.createElement('li');
+      li.append(thumbnail);
+
+      const tag = `
           <div class="${styles.cueListTitle}">${video.title}</div>
           <div class="${styles.cueListEllipsis}"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
-        </li>
       `;
-      ul.insertAdjacentHTML('beforeend', li);
+      li.insertAdjacentHTML('beforeend', tag);
+
+      ul.append(li);
     });
     this.element.append(ul);
   }
