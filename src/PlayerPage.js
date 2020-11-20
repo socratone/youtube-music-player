@@ -97,6 +97,22 @@ class PlayerPage extends Page {
 
     this.element.append(this.playButtons);    
   }
+
+  appendCueList(videos) {
+    const ul = document.createElement('ul');
+    ul.classList.add(styles.cueList);
+    videos.forEach(video => {
+      const li = `
+        <li>
+          <div><img src="https://picsum.photos/60" alt=""></div>
+          <div class="${styles.cueListTitle}">${video.title}</div>
+          <div class="${styles.cueListEllipsis}"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+        </li>
+      `;
+      ul.insertAdjacentHTML('beforeend', li);
+    });
+    this.element.append(ul);
+  }
 }
 
 export default PlayerPage;

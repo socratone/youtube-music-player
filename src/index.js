@@ -6,6 +6,10 @@ import PlayerPage from './PlayerPage';
 import SearchPage from './SearchPage';
 
 let playerPage, player;
+const videos = [
+  { videoId: 'QYNwbZHmh8g', title: '아이유 - Into the I-LAND' }, 
+  { videoId: 'TgOu00Mf3kI', title: '아이유 - 에잇' }
+];
 
 function init() {
   const screen = new Screen();
@@ -39,7 +43,7 @@ init();
 
 window.onYouTubeIframeAPIReady = function() {
   player = new YT.Player('youtube-video', {
-    videoId: 'QYNwbZHmh8g',
+    videoId: videos[0].videoId,
     events: {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange
@@ -50,6 +54,7 @@ window.onYouTubeIframeAPIReady = function() {
 function onPlayerReady(event) {
   playerPage.setPlayer(player);
   playerPage.appendPlayButtons();
+  playerPage.appendCueList(videos);
 }
 
 function onPlayerStateChange(event) {

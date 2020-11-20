@@ -35,3 +35,27 @@
     }
   }
 }
+
+.cueList {
+  display: flex;
+  flex-direction: column;
+
+  li {
+    display: flex;
+    color: $white;
+  }
+}
+
+.cueListTitle {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-left: 8px;
+}
+
+.cueListEllipsis {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+}
