@@ -4,4 +4,12 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+
+  li {
+    cursor: pointer;
+
+    &:hover {
+      color: white;
+    }
+  }
 }
