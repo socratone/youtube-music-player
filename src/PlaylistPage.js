@@ -1,7 +1,7 @@
-import styles from './Playlist.module.scss';
+import styles from './PlaylistPage.module.scss';
 import Page from './Page';
 
-class Playlist extends Page {
+class PlaylistPage extends Page {
   constructor() {
     super();
     this.id = 'playlist';
@@ -10,4 +10,4 @@ class Playlist extends Page {
   }
 }
 
-export default Playlist;
+export default PlaylistPage;

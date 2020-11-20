@@ -1,11 +1,11 @@
 import './index.scss';
 import Nav from './Nav';
 import Screen from './Screen';
-import Playlist from './Playlist';
-import Player from './Player';
-import Search from './Search';
+import PlaylistPage from './PlaylistPage';
+import PlayerPage from './PlayerPage';
+import SearchPage from './SearchPage';
 
-let playlist, player, search;
+let playlistPage, playerPage, searchPage;
 
 function init() {
   const screen = new Screen();
@@ -13,22 +13,42 @@ function init() {
 
   const nav = new Nav();
 
-  playlist = new Playlist();
-  player = new Player();
-  search = new Search();
-  playlist.show();
-  player.hide();
-  search.hide();
+  playlistPage = new PlaylistPage();
+  playerPage = new PlayerPage();
+  searchPage = new SearchPage();
+  playlistPage.hide();
+  playerPage.show();
+  playerPage.appendYoutubeVideo();
+  searchPage.hide();
 
-  nav.append(playlist);
-  nav.append(player);
-  nav.append(search);
+  nav.append(playlistPage);
+  nav.append(playerPage);
+  nav.append(searchPage);
 
   screen.append(nav.element);
-  
-  screen.append(playlist.element)
-  screen.append(player.element)
-  screen.append(search.element)
+
+  screen.append(playlistPage.element)
+  screen.append(playerPage.element)
+  screen.append(searchPage.element)
 }
 
 init();
+
+let player;
+window.onYouTubeIframeAPIReady = function() {
+  player = new YT.Player('youtube-video', {
+    videoId: 'QYNwbZHmh8g',
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }
+  });
+}
+
+function onPlayerReady(event) {
+  event.target.playVideo();
+}
+
+function onPlayerStateChange(event) {
+
+}

@@ -1,7 +1,7 @@
-import styles from './Search.module.scss';
+import styles from './SearchPage.module.scss';
 import Page from './Page';
 
-class Search extends Page {
+class SearchPage extends Page {
   constructor() {
     super();
     this.id = 'search';
@@ -10,4 +10,4 @@ class Search extends Page {
   }
 }
 
-export default Search;
+export default SearchPage;

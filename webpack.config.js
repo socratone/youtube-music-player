@@ -24,10 +24,4 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Youtube Player',
-      filename: 'index.html',
-    })
-  ],
 };
