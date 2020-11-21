@@ -57,7 +57,7 @@ class PlayerPage extends Page {
 
   playNextVideo() {
     this.isSetProgressBar = false;
-    
+
     this.progressBar.value = 0;
     this.clearTimer();
 
@@ -86,12 +86,9 @@ class PlayerPage extends Page {
     const duration = this.player.getDuration().toFixed();
     this.progressBar.max = duration;
     this.progressBar.value = 0;
-    console.log('영상의 길이:', duration);
 
     this.progressBar.addEventListener('click', () => {
-      console.log('위치:', this.progressBar.value);
       this.clearTimer();
-      this.setTimer(this.progressBar.value);
       this.player.seekTo(this.progressBar.value);
     });
   } 
@@ -130,7 +127,6 @@ class PlayerPage extends Page {
       this.play.insertAdjacentHTML('beforeend', '<i class="fa fa-play" aria-hidden="true"></i>');
       this.play.addEventListener('click', () => {
         this.player.playVideo();
-        this.setTimer(this.progressBar.value);
         this.play.style.display = 'none';
         this.pause.style.display = 'block';
       });
@@ -234,7 +230,6 @@ class PlayerPage extends Page {
           this.setCurrentVideoId(video.videoId);
           this.setTitleColor(video.videoId);
           this.player.loadVideoById(video.videoId);
-          this.setTimer();
           this.play.style.display = 'none';
           this.pause.style.display = 'block';
         });
