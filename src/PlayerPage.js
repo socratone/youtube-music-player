@@ -68,15 +68,6 @@ class PlayerPage extends Page {
       this.playButtons.classList.add(styles.playButtons);
     };
 
-    // const setRepeatButton = () => {
-    //   this.repeat = document.createElement('button');
-    //   this.repeat.insertAdjacentHTML('beforeend', '<i class="fa fa-expand" aria-hidden="true"></i>');
-    //   this.repeat.addEventListener('click', () => {
-    //     console.log('repeat 버튼 클릭')
-    //   });
-    //   this.playButtons.append(this.repeat);
-    // };
-
     const setBackwardButton = () => {
       this.backward = document.createElement('button');
       this.backward.insertAdjacentHTML('beforeend', '<i class="fa fa-step-backward" aria-hidden="true"></i>');
@@ -158,7 +149,6 @@ class PlayerPage extends Page {
     };
 
     setButtonWrap();
-    // setRepeatButton();
     setBackwardButton();
     setPlayButton();
     setPauseButton();
