@@ -18,6 +18,10 @@ class PlayerPage extends Page {
     this.element.insertAdjacentHTML('afterbegin', tag);
   }
 
+  setCurrentVideoId(videoId) {
+    this.currentVideoId = videoId;
+  }
+
   setPlayer(player) {
     this.player = player;
   }
@@ -118,6 +122,7 @@ class PlayerPage extends Page {
         cueListTitle.innerHTML = video.title;
 
         cueListTitle.addEventListener('click', () => {
+          this.setCurrentVideoId(video.videoId);
           this.player.loadVideoById(video.videoId);
           this.play.style.display = 'none';
           this.pause.style.display = 'block';

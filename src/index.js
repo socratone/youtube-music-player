@@ -64,6 +64,7 @@ window.onYouTubeIframeAPIReady = function() {
 }
 
 function onPlayerReady(event) {
+  playerPage.setCurrentVideoId(videos[0].videoId);
   playerPage.setPlayer(player);
   playerPage.appendPlayButtons();
   playerPage.appendCueList(videos);
