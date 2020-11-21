@@ -88,8 +88,11 @@ class PlayerPage extends Page {
     this.progressBar.max = duration;
     this.progressBar.value = 0;
 
-    this.progressBar.addEventListener('click', () => {
+    this.progressBar.addEventListener('mousedown', () => {
       this.clearTimer();
+    });
+    
+    this.progressBar.addEventListener('click', () => {
       this.player.seekTo(this.progressBar.value);
     });
   } 
