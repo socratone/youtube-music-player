@@ -138,12 +138,6 @@ class PlayerPage extends Page {
       setCueListTitle();
       setCueListEllipsis();
 
-      // const tag = `
-      //     <div class="${styles.cueListTitle}">${video.title}</div>
-      //     <div class="${styles.cueListEllipsis}"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
-      // `;
-      // li.insertAdjacentHTML('beforeend', tag);
-
       ul.append(li);
     });
 
