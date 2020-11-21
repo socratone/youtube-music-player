@@ -6,6 +6,7 @@ class PlayerPage extends Page {
     super();
     this.id = 'player';
     this.icon = 'fa-youtube-play'
+    this.isShuffle = false;
   }
 
   getCurrentVideoIndex() {
@@ -117,13 +118,37 @@ class PlayerPage extends Page {
       this.playButtons.append(this.forward);
     };
 
-    const setRandomButton = () => {
-      this.random = document.createElement('button');
-      this.random.insertAdjacentHTML('beforeend', '<i class="fa fa-random" aria-hidden="true"></i>');
-      this.random.addEventListener('click', () => {
-        console.log('random 버튼 클릭')
+    const setShuffleButton = () => {
+      this.shuffle = document.createElement('button');
+      this.shuffle.insertAdjacentHTML('beforeend', '<i class="fa fa-random" aria-hidden="true"></i>');
+      this.shuffle.addEventListener('click', () => {
+        const shuffleArray = (array) => {
+          for (let i = array.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+          }
+        };
+
+        const setShuffleVideos = () => {
+          if (!this.originalVideos) this.originalVideos = [...this.videos];
+          shuffleArray(this.videos);
+        };
+
+        const setOriginalVideos = () => {
+          this.videos = [...this.originalVideos];
+        };
+
+        if (this.isShuffle) {
+          console.log('셔플 off')
+          this.isShuffle = false;
+          setOriginalVideos();
+        } else {
+          console.log('셔플 on')
+          this.isShuffle = true;
+          setShuffleVideos();
+        }
       });
-      this.playButtons.append(this.random);
+      this.playButtons.append(this.shuffle);
     };
 
     setButtonWrap();
@@ -132,7 +157,7 @@ class PlayerPage extends Page {
     setPlayButton();
     setPauseButton();
     setForwardButton();
-    setRandomButton();
+    setShuffleButton();
 
     this.element.append(this.playButtons);    
   }
