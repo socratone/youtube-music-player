@@ -101,22 +101,39 @@ class PlayerPage extends Page {
   appendCueList(videos) {
     const ul = document.createElement('ul');
     ul.classList.add(styles.cueList);
+
     videos.forEach(video => {
-      const thumbnail = document.createElement('div');
-      thumbnail.classList.add(styles.cueListThumbnail);
-      thumbnail.style.backgroundImage = `url(https://i.ytimg.com/vi/${video.videoId}/default.jpg)`;
-
       const li = document.createElement('li');
-      li.append(thumbnail);
 
-      const tag = `
-          <div class="${styles.cueListTitle}">${video.title}</div>
-          <div class="${styles.cueListEllipsis}"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
-      `;
-      li.insertAdjacentHTML('beforeend', tag);
+      const setThumbnail = () => {
+        const thumbnail = document.createElement('div');
+        thumbnail.classList.add(styles.cueListThumbnail);
+        thumbnail.style.backgroundImage = `url(https://i.ytimg.com/vi/${video.videoId}/default.jpg)`;
+        li.append(thumbnail);
+      };
+      
+      const setCueListTitle = () => {
+        const cueListTitle = document.createElement('div');
+        cueListTitle.classList.add(styles.cueListTitle);
+        cueListTitle.innerHTML = video.title;
+        li.append(cueListTitle);
+      };
+
+      const setCueListEllipsis = () => {
+        const cueListEllipsis = document.createElement('div');
+        cueListEllipsis.classList.add(styles.cueListEllipsis);
+        const icon = '<i class="fa fa-ellipsis-v" aria-hidden="true"></i>';
+        cueListEllipsis.insertAdjacentHTML('beforeend', icon)
+        li.append(cueListEllipsis);
+      };
+
+      setThumbnail();
+      setCueListTitle();
+      setCueListEllipsis();
 
       ul.append(li);
     });
+
     this.element.append(ul);
   }
 }
