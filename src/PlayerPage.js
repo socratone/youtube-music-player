@@ -106,6 +106,16 @@ class PlayerPage extends Page {
     this.timer = null;
   }
 
+  revealPlayButton() {
+    this.pause.style.display = 'none';
+    this.play.style.display = 'block';
+  }
+
+  revealPauseButton() {
+    this.play.style.display = 'none';
+    this.pause.style.display = 'block';
+  }
+
   appendPlayButtons() {
     const setButtonWrap = () => {
       this.playButtons = document.createElement('div');
@@ -128,8 +138,7 @@ class PlayerPage extends Page {
       this.play.insertAdjacentHTML('beforeend', '<i class="fa fa-play" aria-hidden="true"></i>');
       this.play.addEventListener('click', () => {
         this.player.playVideo();
-        this.play.style.display = 'none';
-        this.pause.style.display = 'block';
+        this.revealPauseButton();
       });
       this.playButtons.append(this.play);
     };
@@ -140,8 +149,7 @@ class PlayerPage extends Page {
       this.pause.addEventListener('click', () => {
         this.player.pauseVideo();
         this.clearTimer();
-        this.pause.style.display = 'none';
-        this.play.style.display = 'block';
+        this.revealPlayButton();
       });
       this.pause.style.display = 'none';
       this.playButtons.append(this.pause);
@@ -231,8 +239,7 @@ class PlayerPage extends Page {
           this.setCurrentVideoId(video.videoId);
           this.setTitleColor(video.videoId);
           this.player.loadVideoById(video.videoId);
-          this.play.style.display = 'none';
-          this.pause.style.display = 'block';
+          this.revealPauseButton();
         });
 
         li.append(cueListTitle);

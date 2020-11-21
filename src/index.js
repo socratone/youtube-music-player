@@ -54,7 +54,7 @@ window.onYouTubeIframeAPIReady = function() {
   player = new YT.Player('youtube-video', {
     playerVars: {
       color: 'white',
-      // controls: 0,
+      controls: 0,
     },
     videoId: videos[0].videoId,
     events: {
@@ -79,6 +79,7 @@ function onPlayerStateChange({ data }) {
   if (data === 0) { // 종료
     playerPage.playNextVideo();
   } else if (data === 1) { // 재생
+    playerPage.revealPauseButton();
     if (!playerPage.isSetProgressBar) { // 음악이 바뀌고 처음 재생 될 때
       playerPage.setProgressBar(); 
       playerPage.setTimer(); 
@@ -86,6 +87,7 @@ function onPlayerStateChange({ data }) {
       playerPage.setTimer(playerPage.progressBar.value); 
     }
   } else if (data == 2) { // 일시 중지
+    playerPage.revealPlayButton();
     playerPage.clearTimer();
   }
 }
