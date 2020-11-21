@@ -116,6 +116,13 @@ class PlayerPage extends Page {
         const cueListTitle = document.createElement('div');
         cueListTitle.classList.add(styles.cueListTitle);
         cueListTitle.innerHTML = video.title;
+
+        cueListTitle.addEventListener('click', () => {
+          this.player.loadVideoById(video.videoId);
+          this.play.style.display = 'none';
+          this.pause.style.display = 'block';
+        });
+
         li.append(cueListTitle);
       };
 
@@ -130,6 +137,12 @@ class PlayerPage extends Page {
       setThumbnail();
       setCueListTitle();
       setCueListEllipsis();
+
+      // const tag = `
+      //     <div class="${styles.cueListTitle}">${video.title}</div>
+      //     <div class="${styles.cueListEllipsis}"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div>
+      // `;
+      // li.insertAdjacentHTML('beforeend', tag);
 
       ul.append(li);
     });
