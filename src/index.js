@@ -1,5 +1,6 @@
 import './index.scss';
 import './scrollBar.scss';
+import './progressBar.scss';
 import Nav from './Nav';
 import Screen from './Screen';
 import PlaylistPage from './PlaylistPage';
@@ -66,13 +67,21 @@ window.onYouTubeIframeAPIReady = function() {
 function onPlayerReady(event) {
   playerPage.setCurrentVideoId(videos[0].videoId);
   playerPage.setPlayer(player);
+  playerPage.appendProgressBar();
   playerPage.appendPlayButtons();
   playerPage.appendCueList(videos);
-  playerPage.setTitleColor(videos[0].videoId)
+  playerPage.setTitleColor(videos[0].videoId);
+  playerPage.setProgressBar();
 }
 
 function onPlayerStateChange({ data }) {
-  if (data === 0) {
+  console.log('data:', data)
+  if (data === 0) { // 종료
     playerPage.playNextVideo();
+  } else if (data === 1) { // 재생
+    if (!playerPage.timer) { // 처음 재생 할 때
+      playerPage.setProgressBar(); 
+      playerPage.setTimer(); 
+    } 
   }
 }

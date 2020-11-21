@@ -1,0 +1,29 @@
+@import './common/color.scss';
+
+input[type='range'] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 32px;
+  background: transparent;
+
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    background: #5d5d5d;
+    cursor: pointer;
+  }
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: $pink;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    margin-top: -5.2px;
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

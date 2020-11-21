@@ -37,6 +37,9 @@ class PlayerPage extends Page {
   }
 
   playPreviousVideo() {
+    this.progressBar.value = 0;
+    this.clearTimer();
+
     const index = this.getCurrentVideoIndex();
     let video = this.videos[index - 1];
     if (!video) video = this.videos[this.videos.length - 1];
@@ -50,6 +53,9 @@ class PlayerPage extends Page {
   }
 
   playNextVideo() {
+    this.progressBar.value = 0;
+    this.clearTimer();
+
     const index = this.getCurrentVideoIndex();
     let video = this.videos[index + 1];
     if (!video) video = this.videos[0];
@@ -60,6 +66,39 @@ class PlayerPage extends Page {
 
     this.play.style.display = 'none';
     this.pause.style.display = 'block';
+  }
+
+  appendProgressBar() {
+    this.progressBar = document.createElement('input');
+    this.progressBar.type = 'range';
+    this.progressBar.step = 1;
+    this.element.append(this.progressBar);
+  }
+
+  setProgressBar() {
+    const duration = this.player.getDuration().toFixed();
+    this.progressBar.max = duration;
+    this.progressBar.value = 0;
+    console.log('영상의 길이:', duration);
+
+    this.progressBar.addEventListener('click', () => {
+      console.log('위치:', this.progressBar.value);
+      this.clearTimer();
+      this.setTimer(this.progressBar.value);
+      this.player.seekTo(this.progressBar.value);
+    });
+  } 
+
+  setTimer(second = 0) {
+    this.timer = setInterval(() => {
+      this.progressBar.value = second;
+      second++;
+    }, 1000);
+  }
+
+  clearTimer() {
+    clearInterval(this.timer);
+    this.timer = null;
   }
 
   appendPlayButtons() {
