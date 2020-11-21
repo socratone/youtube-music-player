@@ -1,6 +1,8 @@
 import styles from './PlayerPage.module.scss';
 import Page from './Page';
 
+const PINK = '#f43a67';
+
 class PlayerPage extends Page {
   constructor() {
     super();
@@ -39,6 +41,7 @@ class PlayerPage extends Page {
     let video = this.videos[index - 1];
     if (!video) video = this.videos[this.videos.length - 1];
       
+    this.setTitleColor(video.videoId);
     this.player.loadVideoById(video.videoId);
     this.currentVideoId = video.videoId;
 
@@ -50,7 +53,8 @@ class PlayerPage extends Page {
     const index = this.getCurrentVideoIndex();
     let video = this.videos[index + 1];
     if (!video) video = this.videos[0];
-      
+
+    this.setTitleColor(video.videoId);
     this.player.loadVideoById(video.videoId);
     this.currentVideoId = video.videoId;
 
@@ -141,10 +145,12 @@ class PlayerPage extends Page {
         if (this.isShuffle) {
           console.log('셔플 off')
           this.isShuffle = false;
+          this.shuffle.style.color = '';
           setOriginalVideos();
         } else {
           console.log('셔플 on')
           this.isShuffle = true;
+          this.shuffle.style.color = PINK;
           setShuffleVideos();
         }
       });
@@ -181,10 +187,12 @@ class PlayerPage extends Page {
       const setCueListTitle = () => {
         const cueListTitle = document.createElement('div');
         cueListTitle.classList.add(styles.cueListTitle);
+        cueListTitle.classList.add(video.videoId);
         cueListTitle.innerHTML = video.title;
 
         cueListTitle.addEventListener('click', () => {
           this.setCurrentVideoId(video.videoId);
+          this.setTitleColor(video.videoId);
           this.player.loadVideoById(video.videoId);
           this.play.style.display = 'none';
           this.pause.style.display = 'block';
@@ -209,6 +217,19 @@ class PlayerPage extends Page {
     });
 
     this.element.append(ul);
+  }
+
+  setTitleColor(videoId) {
+    const cueListTitles = document.querySelectorAll('.' + styles.cueListTitle);
+    [...cueListTitles].forEach(cueListTitle => {
+      if (cueListTitle.classList.contains(videoId)) {
+        cueListTitle.style.color = PINK;
+        cueListTitle.style.fontWeight = '800';
+      } else {
+        cueListTitle.style.color = '';
+        cueListTitle.style.fontWeight = '';
+      }
+    });
   }
 }
 

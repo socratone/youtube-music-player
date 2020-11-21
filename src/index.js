@@ -68,6 +68,7 @@ function onPlayerReady(event) {
   playerPage.setPlayer(player);
   playerPage.appendPlayButtons();
   playerPage.appendCueList(videos);
+  playerPage.setTitleColor(videos[0].videoId)
 }
 
 function onPlayerStateChange({ data }) {
