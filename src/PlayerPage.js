@@ -76,9 +76,23 @@ class PlayerPage extends Page {
     const setForwardButton = () => {
       this.forward = document.createElement('button');
       this.forward.insertAdjacentHTML('beforeend', '<i class="fa fa-step-forward" aria-hidden="true"></i>');
+
       this.forward.addEventListener('click', () => {
-        console.log('forward 버튼 클릭')
+        let index;
+        this.videos.forEach((video, i) => {
+          if (video.videoId === this.currentVideoId) index = i;
+        });
+
+        let video = this.videos[index + 1];
+        if (!video) video = this.videos[0];
+          
+        this.player.loadVideoById(video.videoId);
+        this.currentVideoId = video.videoId;
+
+        this.play.style.display = 'none';
+        this.pause.style.display = 'block';
       });
+      
       this.playButtons.append(this.forward);
     };
 
@@ -103,6 +117,8 @@ class PlayerPage extends Page {
   }
 
   appendCueList(videos) {
+    this.videos = videos;
+
     const ul = document.createElement('ul');
     ul.classList.add(styles.cueList);
 
