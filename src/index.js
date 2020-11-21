@@ -70,6 +70,8 @@ function onPlayerReady(event) {
   playerPage.appendCueList(videos);
 }
 
-function onPlayerStateChange(event) {
-
+function onPlayerStateChange({ data }) {
+  if (data === 0) {
+    playerPage.playNextVideo();
+  }
 }
