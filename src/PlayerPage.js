@@ -44,9 +44,23 @@ class PlayerPage extends Page {
     const setBackwardButton = () => {
       this.backward = document.createElement('button');
       this.backward.insertAdjacentHTML('beforeend', '<i class="fa fa-step-backward" aria-hidden="true"></i>');
+
       this.backward.addEventListener('click', () => {
-        console.log('backward 버튼 클릭')
+        let index;
+        this.videos.forEach((video, i) => {
+          if (video.videoId === this.currentVideoId) index = i;
+        });
+
+        let video = this.videos[index - 1];
+        if (!video) video = this.videos[this.videos.length - 1];
+          
+        this.player.loadVideoById(video.videoId);
+        this.currentVideoId = video.videoId;
+
+        this.play.style.display = 'none';
+        this.pause.style.display = 'block';  
       });
+
       this.playButtons.append(this.backward);
     };
 
@@ -92,7 +106,7 @@ class PlayerPage extends Page {
         this.play.style.display = 'none';
         this.pause.style.display = 'block';
       });
-      
+
       this.playButtons.append(this.forward);
     };
 
