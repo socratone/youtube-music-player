@@ -9,6 +9,7 @@ class PlayerPage extends Page {
     this.id = 'player';
     this.icon = 'fa-youtube-play'
     this.isShuffle = false;
+    this.isSetProgressBar = false;
   }
 
   getCurrentVideoIndex() {
@@ -37,6 +38,8 @@ class PlayerPage extends Page {
   }
 
   playPreviousVideo() {
+    this.isSetProgressBar = false;
+
     this.progressBar.value = 0;
     this.clearTimer();
 
@@ -53,6 +56,8 @@ class PlayerPage extends Page {
   }
 
   playNextVideo() {
+    this.isSetProgressBar = false;
+    
     this.progressBar.value = 0;
     this.clearTimer();
 
@@ -76,6 +81,8 @@ class PlayerPage extends Page {
   }
 
   setProgressBar() {
+    this.isSetProgressBar = true;
+
     const duration = this.player.getDuration().toFixed();
     this.progressBar.max = duration;
     this.progressBar.value = 0;
@@ -123,6 +130,7 @@ class PlayerPage extends Page {
       this.play.insertAdjacentHTML('beforeend', '<i class="fa fa-play" aria-hidden="true"></i>');
       this.play.addEventListener('click', () => {
         this.player.playVideo();
+        this.setTimer(this.progressBar.value);
         this.play.style.display = 'none';
         this.pause.style.display = 'block';
       });
@@ -134,6 +142,7 @@ class PlayerPage extends Page {
       this.pause.insertAdjacentHTML('beforeend', '<i class="fa fa-pause" aria-hidden="true"></i>');
       this.pause.addEventListener('click', () => {
         this.player.pauseVideo();
+        this.clearTimer();
         this.pause.style.display = 'none';
         this.play.style.display = 'block';
       });
@@ -220,9 +229,12 @@ class PlayerPage extends Page {
         cueListTitle.innerHTML = video.title;
 
         cueListTitle.addEventListener('click', () => {
+          this.clearTimer();
+          this.progressBar.value = 0;
           this.setCurrentVideoId(video.videoId);
           this.setTitleColor(video.videoId);
           this.player.loadVideoById(video.videoId);
+          this.setTimer();
           this.play.style.display = 'none';
           this.pause.style.display = 'block';
         });

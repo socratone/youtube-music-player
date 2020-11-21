@@ -79,7 +79,7 @@ function onPlayerStateChange({ data }) {
   if (data === 0) { // 종료
     playerPage.playNextVideo();
   } else if (data === 1) { // 재생
-    if (!playerPage.timer) { // 처음 재생 할 때
+    if (!playerPage.isSetProgressBar) { // 처음 재생 할 때
       playerPage.setProgressBar(); 
       playerPage.setTimer(); 
     } 
