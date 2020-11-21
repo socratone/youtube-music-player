@@ -1,6 +1,6 @@
-import './index.scss';
-import './scrollBar.scss';
-import './progressBar.scss';
+import './global/initialTag.scss';
+import './global/scrollBar.scss';
+import './global/progressBar.scss';
 import Nav from './Nav';
 import Screen from './Screen';
 import PlaylistPage from './page/PlaylistPage';
