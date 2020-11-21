@@ -22,7 +22,7 @@ function init() {
   
   playlistPage.setPageHeight();
   playlistPage.hide();
-
+  
   playerPage.setPageHeight();
   playerPage.show();
   playerPage.appendYoutubeVideo();
@@ -39,6 +39,12 @@ function init() {
   screen.append(playlistPage.element)
   screen.append(playerPage.element)
   screen.append(searchPage.element)
+
+  window.addEventListener('resize', () => {
+    playlistPage.setPageHeight();
+    playerPage.setPageHeight();
+    searchPage.setPageHeight();
+  });
 }
 
 init();
