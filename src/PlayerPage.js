@@ -34,7 +34,15 @@ class PlayerPage extends Page {
   }
 
   setPreviousVideo() {
+    const index = this.getCurrentVideoIndex();
+    let video = this.videos[index - 1];
+    if (!video) video = this.videos[this.videos.length - 1];
+      
+    this.player.loadVideoById(video.videoId);
+    this.currentVideoId = video.videoId;
 
+    this.play.style.display = 'none';
+    this.pause.style.display = 'block';
   }
 
   setNextVideo() {
@@ -69,15 +77,7 @@ class PlayerPage extends Page {
       this.backward.insertAdjacentHTML('beforeend', '<i class="fa fa-step-backward" aria-hidden="true"></i>');
 
       this.backward.addEventListener('click', () => {
-        const index = this.getCurrentVideoIndex();
-        let video = this.videos[index - 1];
-        if (!video) video = this.videos[this.videos.length - 1];
-          
-        this.player.loadVideoById(video.videoId);
-        this.currentVideoId = video.videoId;
-
-        this.play.style.display = 'none';
-        this.pause.style.display = 'block';  
+        this.setPreviousVideo();  
       });
 
       this.playButtons.append(this.backward);
