@@ -1,4 +1,5 @@
 import './index.scss';
+import './scrollBar.scss';
 import Nav from './Nav';
 import Screen from './Screen';
 import PlaylistPage from './PlaylistPage';
