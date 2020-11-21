@@ -9,6 +9,14 @@ class PlayerPage extends Page {
     this.icon = 'fa-youtube-play'
   }
 
+  getCurrentVideoIndex() {
+    let index;
+    this.videos.forEach((video, i) => {
+      if (video.videoId === this.currentVideoId) index = i;
+    });
+    return index;
+  }
+
   appendYoutubeVideo() {
     const tag = `
       <div class="${styles.videoWrap}">
@@ -46,11 +54,7 @@ class PlayerPage extends Page {
       this.backward.insertAdjacentHTML('beforeend', '<i class="fa fa-step-backward" aria-hidden="true"></i>');
 
       this.backward.addEventListener('click', () => {
-        let index;
-        this.videos.forEach((video, i) => {
-          if (video.videoId === this.currentVideoId) index = i;
-        });
-
+        const index = this.getCurrentVideoIndex();
         let video = this.videos[index - 1];
         if (!video) video = this.videos[this.videos.length - 1];
           
@@ -92,11 +96,7 @@ class PlayerPage extends Page {
       this.forward.insertAdjacentHTML('beforeend', '<i class="fa fa-step-forward" aria-hidden="true"></i>');
 
       this.forward.addEventListener('click', () => {
-        let index;
-        this.videos.forEach((video, i) => {
-          if (video.videoId === this.currentVideoId) index = i;
-        });
-
+        const index = this.getCurrentVideoIndex();
         let video = this.videos[index + 1];
         if (!video) video = this.videos[0];
           
