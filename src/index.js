@@ -5,11 +5,9 @@ import PlaylistPage from './PlaylistPage';
 import PlayerPage from './PlayerPage';
 import SearchPage from './SearchPage';
 
+import { videos } from './common/fakeData';
+
 let playerPage, player;
-const videos = [
-  { videoId: 'QYNwbZHmh8g', title: '아이유 - Into the I-LAND' }, 
-  { videoId: 'TgOu00Mf3kI', title: '아이유 - 에잇' }
-];
 
 function init() {
   const screen = new Screen();
