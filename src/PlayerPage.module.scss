@@ -42,22 +42,21 @@
   overflow: auto;
 
   li {
-    display: flex;
+    display: grid;
+    grid-template-columns: 60px 1fr 30px;
+    height: 60px;
     color: $white;
     margin-bottom: 8px;
   }
 }
 
 .cueListThumbnail {
-  width: 60px;
-  height: 60px;
   background-size: cover;
 }
 
 .cueListTitle {
   display: flex;
   align-items: center;
-  flex-grow: 1;
   padding-left: 8px;
   cursor: pointer;
 
@@ -74,7 +73,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30px;
   cursor: pointer;
 
   &:hover {
