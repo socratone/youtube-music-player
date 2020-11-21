@@ -33,6 +33,22 @@ class PlayerPage extends Page {
     this.player = player;
   }
 
+  setPreviousVideo() {
+
+  }
+
+  setNextVideo() {
+    const index = this.getCurrentVideoIndex();
+    let video = this.videos[index + 1];
+    if (!video) video = this.videos[0];
+      
+    this.player.loadVideoById(video.videoId);
+    this.currentVideoId = video.videoId;
+
+    this.play.style.display = 'none';
+    this.pause.style.display = 'block';
+  }
+
   appendPlayButtons() {
     const setButtonWrap = () => {
       this.playButtons = document.createElement('div');
@@ -95,15 +111,7 @@ class PlayerPage extends Page {
       this.forward.insertAdjacentHTML('beforeend', '<i class="fa fa-step-forward" aria-hidden="true"></i>');
 
       this.forward.addEventListener('click', () => {
-        const index = this.getCurrentVideoIndex();
-        let video = this.videos[index + 1];
-        if (!video) video = this.videos[0];
-          
-        this.player.loadVideoById(video.videoId);
-        this.currentVideoId = video.videoId;
-
-        this.play.style.display = 'none';
-        this.pause.style.display = 'block';
+        this.setNextVideo();
       });
 
       this.playButtons.append(this.forward);
