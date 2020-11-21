@@ -76,6 +76,7 @@ class PlayerPage extends Page {
   appendProgressBar() {
     this.progressBar = document.createElement('input');
     this.progressBar.type = 'range';
+    this.progressBar.classList.add(styles.progressBar);
     this.progressBar.step = 1;
     this.element.append(this.progressBar);
   }
