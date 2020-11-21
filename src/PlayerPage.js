@@ -5,7 +5,6 @@ class PlayerPage extends Page {
   constructor() {
     super();
     this.id = 'player';
-    this.title = '플레이어';
     this.icon = 'fa-youtube-play'
   }
 
