@@ -3,9 +3,9 @@ import './scrollBar.scss';
 import './progressBar.scss';
 import Nav from './Nav';
 import Screen from './Screen';
-import PlaylistPage from './PlaylistPage';
-import PlayerPage from './PlayerPage';
-import SearchPage from './SearchPage';
+import PlaylistPage from './page/PlaylistPage';
+import PlayerPage from './page/PlayerPage';
+import SearchPage from './page/SearchPage';
 
 import { videos } from './common/fakeData';
 
