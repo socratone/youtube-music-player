@@ -51,6 +51,10 @@ init();
 
 window.onYouTubeIframeAPIReady = function() {
   player = new YT.Player('youtube-video', {
+    playerVars: {
+      color: 'white',
+      // controls: 0,
+    },
     videoId: videos[0].videoId,
     events: {
       'onReady': onPlayerReady,
