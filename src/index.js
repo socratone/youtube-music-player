@@ -18,12 +18,15 @@ function init() {
   const playlistPage = new PlaylistPage();
   playerPage = new PlayerPage();
   const searchPage = new SearchPage();
-
+  
+  playlistPage.setPageHeight();
   playlistPage.hide();
 
+  playerPage.setPageHeight();
   playerPage.show();
   playerPage.appendYoutubeVideo();
 
+  searchPage.setPageHeight();
   searchPage.hide();
 
   nav.append(playlistPage);

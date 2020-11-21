@@ -39,6 +39,7 @@
 .cueList {
   display: flex;
   flex-direction: column;
+  overflow: auto;
 
   li {
     display: flex;
