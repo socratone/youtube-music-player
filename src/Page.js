@@ -15,7 +15,6 @@ class Page {
 
   show() {
     this.element.style.display = 'flex';
-    
   }
 
   hide() {
