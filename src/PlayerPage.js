@@ -33,7 +33,7 @@ class PlayerPage extends Page {
     this.player = player;
   }
 
-  setPreviousVideo() {
+  playPreviousVideo() {
     const index = this.getCurrentVideoIndex();
     let video = this.videos[index - 1];
     if (!video) video = this.videos[this.videos.length - 1];
@@ -45,7 +45,7 @@ class PlayerPage extends Page {
     this.pause.style.display = 'block';
   }
 
-  setNextVideo() {
+  playNextVideo() {
     const index = this.getCurrentVideoIndex();
     let video = this.videos[index + 1];
     if (!video) video = this.videos[0];
@@ -77,7 +77,7 @@ class PlayerPage extends Page {
       this.backward.insertAdjacentHTML('beforeend', '<i class="fa fa-step-backward" aria-hidden="true"></i>');
 
       this.backward.addEventListener('click', () => {
-        this.setPreviousVideo();  
+        this.playPreviousVideo();  
       });
 
       this.playButtons.append(this.backward);
@@ -111,7 +111,7 @@ class PlayerPage extends Page {
       this.forward.insertAdjacentHTML('beforeend', '<i class="fa fa-step-forward" aria-hidden="true"></i>');
 
       this.forward.addEventListener('click', () => {
-        this.setNextVideo();
+        this.playNextVideo();
       });
 
       this.playButtons.append(this.forward);
