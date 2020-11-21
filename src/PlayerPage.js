@@ -104,7 +104,7 @@ class PlayerPage extends Page {
     videos.forEach(video => {
       const thumbnail = document.createElement('div');
       thumbnail.classList.add(styles.cueListThumbnail);
-      thumbnail.style.backgroundImage = "url(https://picsum.photos/60)";
+      thumbnail.style.backgroundImage = `url(https://i.ytimg.com/vi/${video.videoId}/default.jpg)`;
 
       const li = document.createElement('li');
       li.append(thumbnail);
