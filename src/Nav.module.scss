@@ -18,5 +18,9 @@
     &:hover {
       color: $grey;
     }
+
+    &:active {
+      transform: scale(1.1);
+    }
   }
 }
