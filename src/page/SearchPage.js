@@ -82,7 +82,7 @@ class SearchPage extends Page {
 
     this.input = document.createElement('input');
     this.input.type = 'text';
-    this.input.addEventListener('keydown', ({ key }) => {
+    this.input.addEventListener('keypress', ({ key }) => {
       if (key === 'Enter') handleButtonClick();
     });
    
