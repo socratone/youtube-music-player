@@ -38,9 +38,11 @@ function init() {
 
   screen.append(nav.element);
 
-  screen.append(playlistPage.element)
-  screen.append(playerPage.element)
-  screen.append(searchPage.element)
+  screen.append(playlistPage.element);
+  screen.append(playerPage.element);
+  screen.append(searchPage.element);
+
+  playlistPage.setPlayerPageInstance(playerPage);
 
   window.addEventListener('resize', () => {
     playlistPage.setPageHeight();

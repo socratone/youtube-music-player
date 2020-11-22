@@ -217,8 +217,8 @@ class PlayerPage extends Page {
   appendCueList(videos) {
     this.videos = videos;
 
-    const ul = document.createElement('ul');
-    ul.classList.add(styles.cueList);
+    this.cueList = document.createElement('ul');
+    this.cueList.classList.add(styles.cueList);
 
     videos.forEach(video => {
       const li = document.createElement('li');
@@ -260,10 +260,10 @@ class PlayerPage extends Page {
       setCueListTitle();
       setCueListEllipsis();
 
-      ul.append(li);
+      this.cueList.append(li);
     });
 
-    this.element.append(ul);
+    this.element.append(this.cueList);
   }
 
   setTitleColor(videoId) {
@@ -277,6 +277,10 @@ class PlayerPage extends Page {
         cueListTitle.style.fontWeight = '';
       }
     });
+  }
+
+  clearCueList() {
+    this.cueList.remove();
   }
 }
 

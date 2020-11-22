@@ -1,6 +1,8 @@
 import styles from './PlaylistPage.module.scss';
 import Page from './Page';
 
+const PINK = '#f43a67';
+
 class PlaylistPage extends Page {
   constructor() {
     super();
@@ -23,15 +25,52 @@ class PlaylistPage extends Page {
         
         let hover;
         const setHover = () => {
+          const playButton = document.createElement('a');
+          playButton.classList.add(styles.playButton);
+          playButton.classList.add(userList.listId);
+          playButton.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
+
+          playButton.addEventListener('click', ({ target }) => {
+            const getClickedId = target => {
+              const classValue = target.parentElement.classList.value;
+              const classStrings = classValue.split(' ');
+              const [ id ] = classStrings.filter(string => string !== styles.playButton);
+              return id;
+            };
+
+            const getVideosById = id => {
+              const [ clickedUserList ] = userLists.filter(userList => userList.listId.toString() === id);
+              const { videos } = clickedUserList;
+              return videos;
+            }
+            
+            const id = getClickedId(target);
+            const videos = getVideosById(id);
+
+            this.playerPage.player.pauseVideo();
+            this.playerPage.clearCueList();
+            this.playerPage.appendCueList(videos);
+            this.playerPage.setTitleColor(videos[0].videoId);
+            this.playerPage.setProgressBar();
+            this.playerPage.clearTimer();
+            this.playerPage.player.loadVideoById(videos[0].videoId);
+            this.hide();
+            this.playerPage.show();
+          });
+
+          // 이상은 buttons 이하는 hover
           hover = document.createElement('div');
           hover.classList.add(styles.listThumbnailHover);
+          hover.append(playButton);
   
           hover.addEventListener('mouseover', () => {
             hover.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+            playButton.style.color = PINK;
           });
           
           hover.addEventListener('mouseout', () => {
             hover.style.backgroundColor = '';
+            playButton.style.color = '';
           });
         }
         setHover();
@@ -63,6 +102,10 @@ class PlaylistPage extends Page {
     });
 
     this.element.append(listWrap);
+  }
+
+  setPlayerPageInstance(playerPage) {
+    this.playerPage = playerPage;
   }
 }
 
