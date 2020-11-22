@@ -15,22 +15,20 @@ function init() {
   const screen = new Screen();
   document.body.append(screen.element);
 
-  const nav = new Nav();
-  
   const playlistPage = new PlaylistPage();
-  playerPage = new PlayerPage();
-  const searchPage = new SearchPage();
-  
   playlistPage.setPageHeight();
   playlistPage.hide();
   
+  playerPage = new PlayerPage();
   playerPage.setPageHeight();
   playerPage.show();
   playerPage.appendYoutubeVideo();
-
+  
+  const searchPage = new SearchPage();
   searchPage.setPageHeight();
   searchPage.hide();
-
+  
+  const nav = new Nav();
   nav.append(playlistPage);
   nav.append(playerPage);
   nav.append(searchPage);
