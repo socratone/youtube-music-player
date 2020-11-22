@@ -52,39 +52,39 @@
     height: 60px;
     color: $white;
     margin-bottom: 8px;
-  }
-}
 
-.cueListThumbnail {
-  background-size: cover;
-}
+    .cueListThumbnail {
+      background-size: cover;
+    }
 
-.cueListTitle {
-  display: flex;
-  align-items: center;
-  padding-left: 8px;
-  cursor: pointer;
+    .cueListTitle {
+      display: flex;
+      align-items: center;
+      padding-left: 8px;
+      cursor: pointer;
 
-  &:hover {
-    color: $grey;
-  }
+      &:hover {
+        color: $grey;
+      }
 
-  &:active {
-    color: $white;
-  }
-}
+      &:active {
+        color: $white;
+      }
+    }
 
-.cueListEllipsis {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+    .cueListEllipsis {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
 
-  &:hover {
-    color: $grey;
-  }
+      &:hover {
+        color: $grey;
+      }
 
-  &:active {
-    color: $white;
+      &:active {
+        color: $white;
+      }
+    }
   }
 }
