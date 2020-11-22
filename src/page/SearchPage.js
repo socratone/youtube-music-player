@@ -9,8 +9,9 @@ class SearchPage extends Page {
   }
 
   appendSearchComponent() {
-    const input = document.createElement('input');
-    input.type = 'text';
+    this.input = document.createElement('input');
+    this.input.type = 'text';
+    // TODO: 엔터키 눌렀을 때
    
     const button = document.createElement('a');
     button.innerHTML = '<i class="fa fa-search" aria-hidden="true"></i>';
@@ -18,10 +19,13 @@ class SearchPage extends Page {
     const buttonWrap = document.createElement('div');
     buttonWrap.classList.add(styles.buttonWrap);
     buttonWrap.append(button);
+    buttonWrap.addEventListener('click', () => {
+      const value = this.input.value;
+    });
 
     const div = document.createElement('div');
     div.classList.add(styles.searchComponent);
-    div.append(input, buttonWrap);
+    div.append(this.input, buttonWrap);
     this.element.append(div);
   }
 }
