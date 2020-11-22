@@ -19,7 +19,18 @@ module.exports = {
         // 먼저 'sass-laoder'가 SASS를 CSS로 바꾼다.
         // 다음으로 'css-loader'가 css를 commonJS로 바꾼다.
         // 다음으로 'style-loader'가 JS strings를 이용해서 html head에 style nodes를 만들어 넣는다.
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          'style-loader', 
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[local]--[hash:base64:5]',
+              },
+            },
+          },
+          'sass-loader',  
+        ],
       },
     ],
   },
