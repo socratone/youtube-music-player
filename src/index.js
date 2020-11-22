@@ -19,6 +19,7 @@ function init() {
   playlistPage.setPageHeight();
   // playlistPage.hide();
   playlistPage.appendPlaylist(userLists);
+  playlistPage.appendAddPlaylistButton();
   playlistPage.show();
   
   playerPage = new PlayerPage();

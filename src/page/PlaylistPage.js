@@ -134,6 +134,24 @@ class PlaylistPage extends Page {
   setPlayerPageInstance(playerPage) {
     this.playerPage = playerPage;
   }
+
+  appendAddPlaylistButton() {
+    const icon = '<i class="fa fa-plus-square" aria-hidden="true"></i>';
+    
+    const button = document.createElement('a');
+    button.insertAdjacentHTML('beforeend', icon);
+    
+    const wrap = document.createElement('div');
+    wrap.classList.add(styles.addPlaylistButtonWrap);
+    wrap.append(button);
+
+    wrap.addEventListener('click', () => {
+      console.log('addButton을 클릭했습니다.')
+      // TODO: 모달 생성
+    });
+    
+    this.element.append(wrap);
+  }
 }
 
 export default PlaylistPage;

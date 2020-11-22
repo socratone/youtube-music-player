@@ -89,3 +89,23 @@
   color: $white;
   height: 24px;
 }
+
+.addPlaylistButtonWrap {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  color: $grey;
+  font-size: 18px;
+  transition-property: transform;
+  transition-duration: 0.2s;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  &:active {
+    transform: scale(1.1);
+  }
+}
