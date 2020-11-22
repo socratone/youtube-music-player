@@ -4,8 +4,8 @@
   overflow: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 8px;
-  margin: 0 8px;
+  gap: 16px;
+  margin: 0 16px;
 
   &::-webkit-scrollbar {
     display: none;
