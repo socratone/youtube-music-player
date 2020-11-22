@@ -2,6 +2,7 @@ import styles from './PlaylistPage.module.scss';
 import Page from './Page';
 
 const PINK = '#f43a67';
+const GREY = '#b3b3b3';
 
 class PlaylistPage extends Page {
   constructor() {
@@ -11,6 +12,19 @@ class PlaylistPage extends Page {
   }
 
   appendPlaylist(userLists) {
+    const getClickedId = (target, stringNotId) => {
+      const classValue = target.parentElement.classList.value;
+      const classStrings = classValue.split(' ');
+      const [ id ] = classStrings.filter(string => string !== stringNotId);
+      return id;
+    };
+
+    const getVideosById = id => {
+      const [ clickedUserList ] = userLists.filter(userList => userList.listId.toString() === id);
+      const { videos } = clickedUserList;
+      return videos;
+    };
+
     const listWrap = document.createElement('ul');
     listWrap.classList.add(styles.listWrap);
     
@@ -31,20 +45,7 @@ class PlaylistPage extends Page {
           playButton.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
 
           playButton.addEventListener('click', ({ target }) => {
-            const getClickedId = target => {
-              const classValue = target.parentElement.classList.value;
-              const classStrings = classValue.split(' ');
-              const [ id ] = classStrings.filter(string => string !== styles.playButton);
-              return id;
-            };
-
-            const getVideosById = id => {
-              const [ clickedUserList ] = userLists.filter(userList => userList.listId.toString() === id);
-              const { videos } = clickedUserList;
-              return videos;
-            }
-            
-            const id = getClickedId(target);
+            const id = getClickedId(target, styles.playButton);
             const videos = getVideosById(id);
 
             this.playerPage.player.pauseVideo();
@@ -58,19 +59,33 @@ class PlaylistPage extends Page {
             this.playerPage.show();
           });
 
+          const eraseButton = document.createElement('a');
+          eraseButton.classList.add(styles.eraseButton);
+          eraseButton.classList.add(userList.listId);
+          eraseButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+
+          eraseButton.addEventListener('click', ({ target }) => {
+            const id = getClickedId(target, styles.eraseButton);
+            // TODO: api 요청
+            console.log('다음 listId를 삭제 요청합니다:', id);
+          });
+
           // 이상은 buttons 이하는 hover
           hover = document.createElement('div');
           hover.classList.add(styles.listThumbnailHover);
           hover.append(playButton);
+          hover.append(eraseButton);
   
           hover.addEventListener('mouseover', () => {
             hover.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
             playButton.style.color = PINK;
+            eraseButton.style.color = GREY;
           });
           
           hover.addEventListener('mouseout', () => {
             hover.style.backgroundColor = '';
             playButton.style.color = '';
+            eraseButton.style.color = '';
           });
         }
         setHover();
