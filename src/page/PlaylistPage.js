@@ -23,8 +23,8 @@ class PlaylistPage extends Page {
       return videos;
     };
 
-    const listWrap = document.createElement('ul');
-    listWrap.classList.add(styles.listWrap);
+    this.listWrap = document.createElement('ul');
+    this.listWrap.classList.add(styles.listWrap);
     
     userLists.forEach(userList => {
       const li = document.createElement('li');
@@ -125,10 +125,10 @@ class PlaylistPage extends Page {
       setThumbnail();
       setTitle();
 
-      listWrap.append(li);
+      this.listWrap.append(li);
     });
 
-    this.element.append(listWrap);
+    this.element.append(this.listWrap);
   }
 
   setPlayerPageInstance(playerPage) {
@@ -136,9 +136,10 @@ class PlaylistPage extends Page {
   }
 
   appendAddPlaylistButton() {
-    const icon = '<i class="fa fa-plus-square" aria-hidden="true"></i>';
+    const icon = '<i class="fa fa-plus-circle" aria-hidden="true"></i>';
     
     const button = document.createElement('a');
+    button.classList.add(styles.addPlaylistButton);
     button.insertAdjacentHTML('beforeend', icon);
     
     const wrap = document.createElement('div');
@@ -149,8 +150,11 @@ class PlaylistPage extends Page {
       console.log('addButton을 클릭했습니다.')
       // TODO: 모달 생성
     });
+
+    const li = document.createElement('li');
+    li.append(wrap);
     
-    this.element.append(wrap);
+    this.listWrap.append(li);
   }
 }
 

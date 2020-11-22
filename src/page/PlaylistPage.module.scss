@@ -91,21 +91,32 @@
 }
 
 .addPlaylistButtonWrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%; /* 1:1 비율 */
+}
+
+.addPlaylistButton {
   cursor: pointer;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  border: dashed rgb(85, 85, 85) 1px;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60px;
   color: $grey;
-  font-size: 18px;
-  transition-property: transform;
-  transition-duration: 0.2s;
+  transition-property: color, border;
+  transition-duration: 0.4s, 0.4s;
 
   &:hover {
-    transform: scale(1.2);
+    color: $pink;
+    border: dashed $pink 1px;
   }
 
   &:active {
-    transform: scale(1.1);
+    transform: scale(0.98);
   }
 }
