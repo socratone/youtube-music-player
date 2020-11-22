@@ -17,10 +17,10 @@ function init() {
 
   const playlistPage = new PlaylistPage();
   playlistPage.setPageHeight();
-  // playlistPage.hide();
   playlistPage.appendPlaylist(userLists);
   playlistPage.appendAddPlaylistButton();
-  playlistPage.show();
+  // playlistPage.show();
+  playlistPage.hide();
   
   playerPage = new PlayerPage();
   playerPage.setPageHeight();
@@ -30,7 +30,9 @@ function init() {
   
   const searchPage = new SearchPage();
   searchPage.setPageHeight();
-  searchPage.hide();
+  searchPage.appendSearchComponent();
+  searchPage.show();
+  // searchPage.hide();
   
   const nav = new Nav();
   nav.append(playlistPage);

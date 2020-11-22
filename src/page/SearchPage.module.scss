@@ -1,0 +1,27 @@
+@import '../common/color.scss';
+
+.searchComponent {
+  margin: 0 30px;
+  display: flex;
+  height: 30px;
+  background-color: $white;
+
+  input {
+    width: 100%;
+    outline: none;
+    background-color: $white;
+    border: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-size: 16px;
+  }
+
+  .buttonWrap {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    background-color: $white;
+  }
+}
