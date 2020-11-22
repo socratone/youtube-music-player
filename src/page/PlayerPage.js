@@ -1,7 +1,6 @@
 import styles from './PlayerPage.module.scss';
 import Page from './Page';
-
-const PINK = '#f43a67';
+import { PINK } from '../common/color';
 
 class PlayerPage extends Page {
   constructor() {

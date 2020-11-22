@@ -1,8 +1,6 @@
 import styles from './PlaylistPage.module.scss';
 import Page from './Page';
-
-const PINK = '#f43a67';
-const GREY = '#b3b3b3';
+import { PINK, GREY } from '../common/color';
 
 class PlaylistPage extends Page {
   constructor() {
