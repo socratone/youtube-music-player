@@ -1,11 +1,17 @@
 import styles from './SearchPage.module.scss';
 import Page from './Page';
+import getVideosByQuery from '../helper/getVideosByQuery';
+import filterVideos from '../helper/filterVideos';
 
 class SearchPage extends Page {
   constructor() {
     super();
     this.id = 'search';
     this.icon = 'fa-search'
+  }
+
+  appendSearchResultList(videos) {
+
   }
 
   appendSearchComponent() {
@@ -19,8 +25,16 @@ class SearchPage extends Page {
     const buttonWrap = document.createElement('div');
     buttonWrap.classList.add(styles.buttonWrap);
     buttonWrap.append(button);
-    buttonWrap.addEventListener('click', () => {
-      const value = this.input.value;
+    buttonWrap.addEventListener('click', async () => {
+      const query = this.input.value;
+      const data = await getVideosByQuery(query, 2);
+      if (data.error) {
+        return console.log(data.error.code, data.error.message);
+      } 
+      const videos = data.items;
+      const filteredVideos = filterVideos(videos)
+      console.log('filteredVideos:', filteredVideos)
+      this.appendSearchResultList(filteredVideos);
     });
 
     const div = document.createElement('div');
