@@ -11,11 +11,63 @@ class SearchPage extends Page {
   }
 
   appendSearchResultList(videos) {
+    this.list = document.createElement('ul');
+    this.list.classList.add(styles.searchResultListWrap);
+    
+    videos.forEach(video => {
+      const li = document.createElement('li');
 
+      const setThumbnail = () => {
+        const thumbnail = document.createElement('div');
+        thumbnail.classList.add(styles.searchResultListThumbnail);
+        thumbnail.style.backgroundImage = `url(https://i.ytimg.com/vi/${video.videoId}/default.jpg)`;
+        li.append(thumbnail);
+      };
+      
+      const setTitle = () => {
+        const title = document.createElement('div');
+        title.classList.add(styles.searchResultListTitle);
+        title.classList.add(video.videoId);
+        title.innerHTML = video.title;
+
+        title.addEventListener('click', () => {
+          // this.clearTimer();
+          // this.progressBar.value = 0;
+          // this.setCurrentVideoId(video.videoId);
+          // this.setTitleColor(video.videoId);
+          // this.player.loadVideoById(video.videoId);
+          // this.revealPauseButton();
+        });
+
+        li.append(title);
+      };
+
+      const setEllipsis = () => {
+        const ellipsis = document.createElement('div');
+        ellipsis.classList.add(styles.searchResultListEllipsis);
+        const icon = '<i class="fa fa-ellipsis-v" aria-hidden="true"></i>';
+        ellipsis.insertAdjacentHTML('beforeend', icon)
+        li.append(ellipsis);
+      };
+
+      setThumbnail();
+      setTitle();
+      setEllipsis();
+
+      this.list.append(li);
+    });
+
+    this.element.append(this.list);
+  }
+
+  clearSearchResultList() {
+    if (this.list) this.list.remove();
+    this.list = null;
   }
 
   appendSearchComponent() {
     const handleButtonClick = async () => {
+      this.clearSearchResultList();
       const query = this.input.value;
       if (query.length === 0) return alert('값을 입력하세요.');
       const data = await getVideosByQuery(query, 2);

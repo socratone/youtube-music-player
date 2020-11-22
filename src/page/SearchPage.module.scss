@@ -1,7 +1,7 @@
 @import '../common/color.scss';
 
 .searchComponent {
-  margin: 0 30px;
+  margin: 0 30px 8px 30px;
   display: flex;
   height: 30px;
   background-color: $white;
@@ -23,5 +23,54 @@
     align-items: center;
     width: 30px;
     background-color: $white;
+  }
+}
+
+.searchResultListWrap {
+  display: flex;
+  flex-direction: column;
+  padding-left: 8px;
+  overflow: auto;
+
+  li {
+    display: grid;
+    grid-template-columns: 60px 1fr 30px;
+    height: 60px;
+    color: $white;
+    margin-bottom: 8px;
+
+    .searchResultListThumbnail {
+      background-size: cover;
+    }
+
+    .searchResultListTitle {
+      display: flex;
+      align-items: center;
+      padding-left: 8px;
+      cursor: pointer;
+
+      &:hover {
+        color: $grey;
+      }
+
+      &:active {
+        color: $white;
+      }
+    }
+
+    .searchResultListEllipsis {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      &:hover {
+        color: $grey;
+      }
+
+      &:active {
+        color: $white;
+      }
+    }
   }
 }
