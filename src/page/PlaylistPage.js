@@ -59,6 +59,17 @@ class PlaylistPage extends Page {
             this.playerPage.show();
           });
 
+          const editButton = document.createElement('a');
+          editButton.classList.add(styles.editButton);
+          editButton.classList.add(userList.listId);
+          editButton.innerHTML = '<i class="fa fa-pencil" aria-hidden="true"></i>'
+
+          editButton.addEventListener('click', ({ target }) => {
+            const id = getClickedId(target, styles.editButton);
+            // TODO: api 요청
+            console.log('다음 listId를 수정 요청합니다:', id);
+          });
+
           const eraseButton = document.createElement('a');
           eraseButton.classList.add(styles.eraseButton);
           eraseButton.classList.add(userList.listId);
@@ -74,17 +85,20 @@ class PlaylistPage extends Page {
           hover = document.createElement('div');
           hover.classList.add(styles.listThumbnailHover);
           hover.append(playButton);
+          hover.append(editButton);
           hover.append(eraseButton);
   
           hover.addEventListener('mouseover', () => {
             hover.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
             playButton.style.color = PINK;
+            editButton.style.color = GREY;
             eraseButton.style.color = GREY;
           });
           
           hover.addEventListener('mouseout', () => {
             hover.style.backgroundColor = '';
             playButton.style.color = '';
+            editButton.style.color = '';
             eraseButton.style.color = '';
           });
         }

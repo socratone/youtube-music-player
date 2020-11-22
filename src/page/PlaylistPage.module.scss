@@ -51,6 +51,21 @@
     }
   }
 
+  .editButton {
+    cursor: pointer;
+    position: absolute;
+    left: 6px;
+    bottom: 2px;
+    font-size: 18px;
+    color: transparent;
+    transition-property: color;
+    transition-duration: 0.4s;
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+
   .eraseButton {
     cursor: pointer;
     position: absolute;
