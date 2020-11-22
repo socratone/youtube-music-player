@@ -7,7 +7,7 @@ import PlaylistPage from './page/PlaylistPage';
 import PlayerPage from './page/PlayerPage';
 import SearchPage from './page/SearchPage';
 
-import { videos } from './common/fakeData';
+import { videos, userLists } from './common/fakeData';
 
 let playerPage, player;
 
@@ -17,11 +17,14 @@ function init() {
 
   const playlistPage = new PlaylistPage();
   playlistPage.setPageHeight();
-  playlistPage.hide();
+  // playlistPage.hide();
+  playlistPage.appendPlaylist(userLists);
+  playlistPage.show();
   
   playerPage = new PlayerPage();
   playerPage.setPageHeight();
-  playerPage.show();
+  // playerPage.show();
+  playerPage.hide();
   playerPage.appendYoutubeVideo();
   
   const searchPage = new SearchPage();

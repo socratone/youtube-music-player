@@ -12,4 +12,29 @@ const videos = [
   { videoId: 'fV4DiAyExN0', title: 'Hoobastank - The Reason (Official Music Video)' },
 ];
 
-export { videos };
+const userLists = [
+  {
+    title: '신나는 음악',
+    videos: [
+      { videoId: 'QYNwbZHmh8g', title: '아이유 - Into the I-LAND' }, 
+      { videoId: 'TgOu00Mf3kI', title: '아이유 - 에잇' }, 
+      { videoId: 'TgOu00Mf3kI', title: '아이유 - 에잇' }, 
+    ]
+  },
+  {
+    title: '차분한 음악',
+    videos: [
+      { videoId: '-5q5mZbe3V8', title: 'BTS (방탄소년단) &#39;Life Goes On&#39; Official MV' },
+      { videoId: '-5q5mZbe3V8', title: 'BTS (방탄소년단) &#39;Life Goes On&#39; Official MV' },
+      { videoId: '-5q5mZbe3V8', title: 'BTS (방탄소년단) &#39;Life Goes On&#39; Official MV' },
+    ]
+  },
+  {
+    title: '특이한 음악',
+    videos: [
+      { videoId: 'h28fhU-mjDA', title: '장기하와 얼굴들 (Kiha & The Faces) - 그건 니 생각이고 (That’s Just What You Think) MV' },
+    ]
+  },
+];
+
+export { videos, userLists };
