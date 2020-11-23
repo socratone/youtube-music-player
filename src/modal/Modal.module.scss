@@ -58,6 +58,20 @@
 
   .secondLine {
     margin-top: 32px;
+
+    .description {
+      line-height: 1.4;
+    }
+
+    .modalInput {
+      outline: none;
+      height: 30px;
+      font-size: 16px;
+      border: $grey solid 1px;
+      padding-left: 8px;
+      padding-right: 8px;
+      margin-top: 8px;
+    }
   }
 
   .thirdLine {

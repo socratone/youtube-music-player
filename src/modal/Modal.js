@@ -3,6 +3,7 @@ import styles from './Modal.module.scss';
 class Modal {
   constructor(size = 'medium') {
     this.size = size; // small, medium, large
+    this.isInput = false;
   }
 
   setTitle(title) {
@@ -16,6 +17,10 @@ class Modal {
   setButtons(ok, cancel) {
     if (cancel) this.buttons = [ok, cancel];
     else this.buttons = [ok];
+  }
+
+  setInput() {
+    this.isInput = true;
   }
 
   setExecutedFunction(executedFunction) {
@@ -42,11 +47,16 @@ class Modal {
     const createSecondLine = () => {
       const description = document.createElement('p');
       description.classList.add(styles.description);
-      description.textContent = this.description;
+      description.innerHTML = this.description;
       
       secondLine = document.createElement('div');
       secondLine.classList.add(styles.secondLine);
       secondLine.append(description);
+
+      if (this.isInput) {
+        const tag = `<p><input id="modalInput" class="${styles.modalInput}" type="text"></input></p>`;
+        secondLine.insertAdjacentHTML('beforeend', tag);
+      }
     };
     
     const createThirdLine = () => {
