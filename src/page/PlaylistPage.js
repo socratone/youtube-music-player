@@ -10,7 +10,7 @@ class PlaylistPage extends Page {
   }
 
   appendPlaylist(userLists) {
-    const getClickedId = (target, stringNotId) => {
+    const getClickedIdFromClassValue = (target, stringNotId) => {
       const classValue = target.parentElement.classList.value;
       const classStrings = classValue.split(' ');
       const [ id ] = classStrings.filter(string => string !== stringNotId);
@@ -43,7 +43,7 @@ class PlaylistPage extends Page {
           playButton.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
 
           playButton.addEventListener('click', ({ target }) => {
-            const id = getClickedId(target, styles.playButton);
+            const id = getClickedIdFromClassValue(target, styles.playButton);
             const videos = getVideosById(id);
 
             this.playerPage.player.pauseVideo();
@@ -63,7 +63,7 @@ class PlaylistPage extends Page {
           editButton.innerHTML = '<i class="fa fa-pencil" aria-hidden="true"></i>'
 
           editButton.addEventListener('click', ({ target }) => {
-            const id = getClickedId(target, styles.editButton);
+            const id = getClickedIdFromClassValue(target, styles.editButton);
             // TODO: api 요청
             console.log('다음 listId를 수정 요청합니다:', id);
           });
@@ -74,7 +74,7 @@ class PlaylistPage extends Page {
           eraseButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
 
           eraseButton.addEventListener('click', ({ target }) => {
-            const id = getClickedId(target, styles.eraseButton);
+            const id = getClickedIdFromClassValue(target, styles.eraseButton);
             // TODO: api 요청
             console.log('다음 listId를 삭제 요청합니다:', id);
           });
