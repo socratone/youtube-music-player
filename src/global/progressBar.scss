@@ -4,11 +4,13 @@ input[type='range'] {
   -webkit-appearance: none;
   width: 100%;
   height: 32px;
+  margin: 4px 0;
   background: transparent;
 
   &::-webkit-slider-runnable-track {
     width: 100%;
     height: 5px;
+    margin: 0 6px;
     background: #5d5d5d;
     cursor: pointer;
   }
