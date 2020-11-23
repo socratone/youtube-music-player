@@ -46,6 +46,7 @@ function init() {
   screen.append(searchPage.element);
 
   playlistPage.setPlayerPageInstance(playerPage);
+  searchPage.setPlayerPageInstance(playerPage);
 
   window.addEventListener('resize', () => {
     playlistPage.setPageHeight();

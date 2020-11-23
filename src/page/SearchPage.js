@@ -30,13 +30,33 @@ class SearchPage extends Page {
         title.classList.add(video.videoId);
         title.innerHTML = video.title;
 
-        title.addEventListener('click', () => {
-          // this.clearTimer();
-          // this.progressBar.value = 0;
-          // this.setCurrentVideoId(video.videoId);
-          // this.setTitleColor(video.videoId);
-          // this.player.loadVideoById(video.videoId);
-          // this.revealPauseButton();
+        title.addEventListener('click', ({ target }) => {
+          const getClickedIdFromClassValue = (target, stringNotId) => {
+            const classValue = target.classList.value;
+            const classStrings = classValue.split(' ');
+            const [ id ] = classStrings.filter(string => string !== stringNotId);
+            return id;
+          };
+
+          const deleteDuplicateId = (videoId, videos) => {
+            return videos.filter(video => video.videoId !== videoId);
+          };
+
+          const videoId = getClickedIdFromClassValue(target, styles.searchResultListTitle);
+          const title = target.textContent;
+
+          this.playerPage.videos = deleteDuplicateId(videoId, this.playerPage.videos);
+          this.playerPage.videos.unshift({ videoId, title });
+
+          this.playerPage.player.pauseVideo();
+          this.playerPage.clearCueList();
+          this.playerPage.appendCueList(this.playerPage.videos);
+          this.playerPage.setTitleColor(videoId);
+          this.playerPage.setProgressBar();
+          this.playerPage.clearTimer();
+          this.playerPage.player.loadVideoById(videoId);
+          this.hide();
+          this.playerPage.show();
         });
 
         li.append(title);
@@ -98,6 +118,10 @@ class SearchPage extends Page {
     div.classList.add(styles.searchComponent);
     div.append(this.input, buttonWrap);
     this.element.append(div);
+  }
+
+  setPlayerPageInstance(playerPage) {
+    this.playerPage = playerPage;
   }
 }
 
