@@ -50,9 +50,9 @@ class PlaylistPage extends Page {
             this.playerPage.clearCueList();
             this.playerPage.appendCueList(videos);
             this.playerPage.setTitleColor(videos[0].videoId);
-            this.playerPage.setProgressBar();
             this.playerPage.clearTimer();
-            this.playerPage.player.loadVideoById(videos[0].videoId);
+            this.playerPage.isSetProgressBar = false;
+            this.playerPage.player.loadVideoById(videos[0].videoId); // isSetProgressBar 설정이 바로 앞에 나와야 한다.
             this.hide();
             this.playerPage.show();
           });

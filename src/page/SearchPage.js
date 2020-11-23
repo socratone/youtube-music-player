@@ -52,9 +52,10 @@ class SearchPage extends Page {
           this.playerPage.clearCueList();
           this.playerPage.appendCueList(this.playerPage.videos);
           this.playerPage.setTitleColor(videoId);
-          this.playerPage.setProgressBar();
           this.playerPage.clearTimer();
-          this.playerPage.player.loadVideoById(videoId);
+          this.playerPage.setCurrentVideoId(videoId);
+          this.playerPage.isSetProgressBar = false;
+          this.playerPage.player.loadVideoById(videoId); // isSetProgressBar 설정이 바로 앞에 나와야 한다.
           this.hide();
           this.playerPage.show();
         });
