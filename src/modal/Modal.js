@@ -29,7 +29,7 @@ class Modal {
       title.classList.add(styles.title);
       title.textContent = this.title;
   
-      const xButton = document.createElement('span');
+      const xButton = document.createElement('a');
       xButton.classList.add(styles.xButton);
       xButton.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
       xButton.addEventListener('click', () => this.clear());
@@ -80,19 +80,37 @@ class Modal {
     createSecondLine();
     createThirdLine();
     
-    const modal = document.createElement('section');
-    modal.classList.add(styles.modal);
-    modal.append(firstLine, secondLine, thirdLine);
+    this.modal = document.createElement('section');
+    this.modal.classList.add(styles.modal);
+    if (this.size === 'small') {
+      this.modal.style.width = '200px';
+    } else if (this.size === 'large') {
+      this.modal.style.width = '100%';
+      this.modal.style.margin = '30px';
+    } 
+    this.modal.append(firstLine, secondLine, thirdLine);
+
+    this.modalWrap = document.createElement('div');
+    this.modalWrap.classList.add(styles.modalWrap);
+    this.modalWrap.append(this.modal)
     
     this.element = document.createElement('div');
-    this.element.classList.add(styles.modalWrap);
-    this.element.append(modal);
+    this.element.classList.add(styles.modalBackground);
+    this.element.append(this.modalWrap);
 
     document.body.append(this.element);
-  }
 
+    setTimeout(() => {
+      this.element.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+      this.modalWrap.style.top = '0';
+      this.modal.style.transform = 'scale(1)';
+    }, 0)
+  }
+  
   clear() {
-    this.element.remove();
+    setTimeout(() => {
+      this.element.remove();
+    }, 200);
   }
 }
 
