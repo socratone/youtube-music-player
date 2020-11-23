@@ -1,0 +1,64 @@
+@import '../common/color.scss';
+
+.modalWrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.329);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 8px;
+  width: 300px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
+  .firstLine {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+
+    .title {
+      font-weight: 700;
+    }
+
+    .xButton {
+      cursor: pointer;
+    }
+  }
+
+  .secondLine {
+    margin-top: 32px;
+  }
+
+  .thirdLine {
+    margin-top: 12px;
+    display: flex;
+    justify-content: flex-end;
+
+    .button {
+      font-size: 16px;
+      cursor: pointer;
+      border: 0;
+      border-radius: 8px;
+      padding: 16px;
+      outline: none;
+      background-color: white;
+      color: $pink;
+
+      &:last-child {
+        background-color: $pink;
+        color: $white;
+      }
+    }
+  }
+}
