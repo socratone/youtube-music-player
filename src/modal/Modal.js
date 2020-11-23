@@ -1,29 +1,31 @@
 import styles from './Modal.module.scss';
 
 class Modal {
-  constructor(size = 'medium') {
-    this.size = size; // small, medium, large
+  constructor(size = 'medium') { // size: 'small' | 'medium' | 'large'
+    this.size = size; 
     this.isInput = false;
   }
 
-  setTitle(title) {
+  setTitle(title) { // title: string
     this.title = title;
   }
 
-  setDescription(description) {
+  setDescription(description) { // description: string, 줄바꿈을 위해 <br>을 넣을 수 있다.
     this.description = description;
   }
 
-  setButtons(ok, cancel) {
+  setButtons(ok, cancel) { // ok: string, cancel?: string
     if (cancel) this.buttons = [ok, cancel];
     else this.buttons = [ok];
   }
 
-  setInput() {
+  setInput(inputWidth) { // inputWidth?: string
     this.isInput = true;
+    this.inputWidth = inputWidth;
   }
 
-  setExecutedFunction(executedFunction) {
+  // executedFunction: function, this.input.value로 input의 value를 가져올 수 있다.
+  setExecutedFunction(executedFunction) { 
     this.executedFunction = executedFunction;
   }
 
@@ -54,8 +56,13 @@ class Modal {
       secondLine.append(description);
 
       if (this.isInput) {
-        const tag = `<p><input id="modalInput" class="${styles.modalInput}" type="text"></input></p>`;
-        secondLine.insertAdjacentHTML('beforeend', tag);
+        this.input = document.createElement('input');
+        this.input.type = 'text';
+        this.input.classList.add(styles.modalInput);
+        
+        const p = document.createElement('p');
+        p.append(this.input);
+        secondLine.append(p);
       }
     };
     
