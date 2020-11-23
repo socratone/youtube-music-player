@@ -45,8 +45,7 @@ class PlayerPage extends Page {
     if (!video) video = this.videos[this.videos.length - 1];
       
     this.setTitleColor(video.videoId);
-    this.isSetProgressBar = false;
-    this.player.loadVideoById(video.videoId); // isSetProgressBar 설정이 바로 앞에 나와야 한다.
+    this.playVideoId(video.videoId);
     this.currentVideoId = video.videoId;
 
     this.play.style.display = 'none';
@@ -62,8 +61,7 @@ class PlayerPage extends Page {
     if (!video) video = this.videos[0];
 
     this.setTitleColor(video.videoId);
-    this.isSetProgressBar = false;
-    this.player.loadVideoById(video.videoId); // isSetProgressBar 설정이 바로 앞에 나와야 한다.
+    this.playVideoId(video.videoId);
     this.currentVideoId = video.videoId;
 
     this.play.style.display = 'none';
@@ -238,8 +236,7 @@ class PlayerPage extends Page {
           this.progressBar.value = 0;
           this.setCurrentVideoId(video.videoId);
           this.setTitleColor(video.videoId);
-          this.isSetProgressBar = false;
-          this.player.loadVideoById(video.videoId); // isSetProgressBar 설정이 바로 앞에 나와야 한다.
+          this.playVideoId(video.videoId);
           this.revealPauseButton();
         });
 
@@ -279,6 +276,11 @@ class PlayerPage extends Page {
 
   clearCueList() {
     this.cueList.remove();
+  }
+
+  playVideoId(videoId) {
+    this.isSetProgressBar = false;
+    this.player.loadVideoById(videoId);
   }
 }
 
