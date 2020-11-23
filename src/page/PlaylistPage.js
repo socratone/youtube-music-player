@@ -1,6 +1,6 @@
 import styles from './PlaylistPage.module.scss';
 import Page from './Page';
-import Modal from '../modal/Modal';
+import Modal from '../common/Modal';
 import { PINK, GREY } from '../common/color';
 
 class PlaylistPage extends Page {

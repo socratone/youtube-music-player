@@ -7,6 +7,8 @@ import PlaylistPage from './page/PlaylistPage';
 import PlayerPage from './page/PlayerPage';
 import SearchPage from './page/SearchPage';
 
+import Modal from './common/Modal';
+
 import { videos, userLists } from './common/fakeData';
 
 let playerPage, player;
