@@ -2,6 +2,7 @@ import styles from './SearchPage.module.scss';
 import Page from './Page';
 import getVideosByQuery from '../helper/getVideosByQuery';
 import filterVideos from '../helper/filterVideos';
+import Modal from '../common/Modal';
 
 class SearchPage extends Page {
   constructor() {
@@ -89,7 +90,14 @@ class SearchPage extends Page {
     const handleButtonClick = async () => {
       this.clearSearchResultList();
       const query = this.input.value;
-      if (query.length === 0) return alert('값을 입력하세요.');
+      
+      if (query.length === 0) {
+        const modal = new Modal('small');
+        modal.setTitle('알림');
+        modal.setDescription('값을 입력하세요.');
+        modal.setButtons('확인');
+        return modal.show();
+      }
       const data = await getVideosByQuery(query, 2);
       if (data.error) {
         return console.log(data.error.code, data.error.message);
