@@ -90,7 +90,7 @@ class SearchPage extends Page {
     const handleButtonClick = async () => {
       this.clearSearchResultList();
       const query = this.input.value;
-      
+
       if (query.length === 0) {
         const modal = new Modal('small');
         modal.setTitle('알림');
@@ -106,6 +106,7 @@ class SearchPage extends Page {
       const filteredVideos = filterVideos(videos)
       console.log('filteredVideos:', filteredVideos)
       this.appendSearchResultList(filteredVideos);
+      this.saveSearchResultList(filteredVideos)
     };
 
     this.input = document.createElement('input');
@@ -130,6 +131,16 @@ class SearchPage extends Page {
 
   setPlayerPageInstance(playerPage) {
     this.playerPage = playerPage;
+  }
+
+  saveSearchResultList(videos) {
+    localStorage.setItem('search-result-list', JSON.stringify(videos));
+  }
+
+  loadSearchResultList() {
+    const videos = localStorage.getItem('search-result-list');
+    if (videos) return JSON.parse(videos);
+    return false;
   }
 }
 

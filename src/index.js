@@ -33,6 +33,8 @@ function init() {
   const searchPage = new SearchPage();
   searchPage.setPageHeight();
   searchPage.appendSearchComponent();
+  const videos = searchPage.loadSearchResultList();
+  if (videos) searchPage.appendSearchResultList(videos);
   searchPage.show();
   // searchPage.hide();
   
