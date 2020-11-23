@@ -1,5 +1,6 @@
 import styles from './PlaylistPage.module.scss';
 import Page from './Page';
+import Modal from '../modal/Modal';
 import { PINK, GREY } from '../common/color';
 
 class PlaylistPage extends Page {
@@ -146,8 +147,16 @@ class PlaylistPage extends Page {
     wrap.append(button);
 
     wrap.addEventListener('click', () => {
-      console.log('addButton을 클릭했습니다.')
-      // TODO: 모달 생성
+      const modal = new Modal('medium');
+      modal.setTitle('Playlist');
+      modal.setDescription('새로 생성할 재생 리스트의 이름을 입력하세요.');
+      modal.setButtons('OK', 'Cancel');
+      modal.setInput('100%');
+      modal.setExecutedFunction(() => { 
+        // TODO: 재생 리스트 생성
+        console.log('다음 이름으로 재생 리스트를 생성합니다:', modal.input.value)
+      })
+      modal.show();
     });
 
     const li = document.createElement('li');
