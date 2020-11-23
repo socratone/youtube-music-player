@@ -63,14 +63,19 @@
       line-height: 1.4;
     }
 
-    .modalInput {
-      outline: none;
-      height: 30px;
-      font-size: 16px;
-      border: $grey solid 1px;
-      padding-left: 8px;
-      padding-right: 8px;
+    .modalInputWrap {
+      display: flex;
       margin-top: 8px;
+
+      .modalInput {
+        width: 100%;
+        outline: none;
+        height: 30px;
+        font-size: 16px;
+        border: $grey solid 1px;
+        padding-left: 8px;
+        padding-right: 8px;
+      }
     }
   }
 

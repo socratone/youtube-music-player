@@ -60,9 +60,11 @@ class Modal {
         this.input.type = 'text';
         this.input.classList.add(styles.modalInput);
         
-        const p = document.createElement('p');
-        p.append(this.input);
-        secondLine.append(p);
+        const inputWrap = document.createElement('p');
+        inputWrap.classList.add(styles.modalInputWrap);
+        if (this.inputWidth !== undefined) inputWrap.style.width = this.inputWidth;
+        inputWrap.append(this.input);
+        secondLine.append(inputWrap);
       }
     };
     
@@ -72,7 +74,7 @@ class Modal {
       
       const firstButton = document.createElement('button');
       firstButton.classList.add(styles.button);
-      if (this.buttons[0] === undefined) {
+      if (this.buttons[0] && !this.executedFunction) {
         firstButton.addEventListener('click', () => this.clear());
         firstButton.innerText = '확인';
       } else {
