@@ -32,7 +32,7 @@ class Dropdown {
     this.gap = gap;
   }
 
-  setOffset(offset) { // offset: number, 올릴수록 화살표의 위치가 가운데로 움직인다.
+  setOffset(offset = 0) { // offset: number, 올릴수록 화살표의 위치가 가운데로 움직인다.
     this.offset = offset;
   }
 
