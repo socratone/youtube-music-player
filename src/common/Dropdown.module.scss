@@ -20,3 +20,45 @@
     }
   }
 }
+
+$arrow-height: 8px;
+
+.arrowUp {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: $arrow-height solid transparent;
+  border-right: $arrow-height solid transparent;
+
+  border-bottom: $arrow-height solid $white;
+}
+
+.arrowDown {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: $arrow-height solid transparent;
+  border-right: $arrow-height solid transparent;
+
+  border-top: $arrow-height solid $white;
+}
+
+.arrowRight {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: $arrow-height solid transparent;
+  border-bottom: $arrow-height solid transparent;
+
+  border-left: $arrow-height solid $white;
+}
+
+.arrowLeft {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: $arrow-height solid transparent;
+  border-bottom: $arrow-height solid transparent;
+
+  border-right: $arrow-height solid $white;
+}
