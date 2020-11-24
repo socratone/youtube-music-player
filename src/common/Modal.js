@@ -24,9 +24,9 @@ class Modal {
     this.inputWidth = inputWidth;
   }
 
-  // executedFunction: function, this.input.value로 input의 value를 가져올 수 있다.
-  setExecutedFunction(executedFunction) { 
-    this.executedFunction = executedFunction;
+  // callback: function, this.input.value로 input의 value를 가져올 수 있다.
+  setCallback(callback) { 
+    this.callback = callback;
   }
 
   show() {
@@ -75,9 +75,9 @@ class Modal {
       const firstButton = document.createElement('button');
       firstButton.classList.add(styles.button);
 
-      if (this.executedFunction) {
+      if (this.callback) {
         firstButton.addEventListener('click', () => {
-          this.executedFunction();
+          this.callback();
           this.clear();
         });
       } else {

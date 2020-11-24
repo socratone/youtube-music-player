@@ -57,11 +57,11 @@ describe('Unit Test', () => {
     });
   });
   
-  describe('setExecutedFunction 메소드', () => {
-    it('setExecutedFunction이 정확히 들어가야 한다.', () => {
+  describe('setCallback 메소드', () => {
+    it('setCallback이 정확히 들어가야 한다.', () => {
       const func = () => {};
-      modal.setExecutedFunction(func);
-      expect(modal.executedFunction).toBe(func);
+      modal.setCallback(func);
+      expect(modal.callback).toBe(func);
     });
   });
 });
@@ -76,7 +76,7 @@ describe('DOM Test', () => {
       modal.setDescription('새로 생성할 재생 리스트의 이름을 입력하세요.');
       modal.setButtons('OK', 'Cancel');
       modal.setInput('100%');
-      modal.setExecutedFunction(() => { 
+      modal.setCallback(() => { 
         // TODO: 재생 리스트 생성
         console.log('다음 이름으로 재생 리스트를 생성합니다:', modal.input.value)
       })

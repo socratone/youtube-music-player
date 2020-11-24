@@ -152,7 +152,7 @@ class PlaylistPage extends Page {
       modal.setDescription('새로 생성할 재생 리스트의 이름을 입력하세요.');
       modal.setButtons('OK', 'Cancel');
       modal.setInput('100%');
-      modal.setExecutedFunction(() => { 
+      modal.setCallback(() => { 
         // TODO: 재생 리스트 생성
         console.log('다음 이름으로 재생 리스트를 생성합니다:', modal.input.value)
       })
