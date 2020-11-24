@@ -74,22 +74,28 @@ class Modal {
       
       const firstButton = document.createElement('button');
       firstButton.classList.add(styles.button);
-      if (this.buttons[0] && !this.executedFunction) {
-        firstButton.addEventListener('click', () => this.clear());
-        firstButton.innerText = '확인';
-      } else {
-        firstButton.innerText = this.buttons[0];
+
+      if (this.executedFunction) {
         firstButton.addEventListener('click', () => {
           this.executedFunction();
           this.clear();
         });
+      } else {
+        firstButton.addEventListener('click', () => this.clear());
       }
+
+      if (this.buttons[0]) {
+        firstButton.innerHTML = this.buttons[0];
+      } else {
+        firstButton.innerHTML = '확인';
+      }
+
       thirdLine.append(firstButton);
       
       if (this.buttons[1]) {
         const cancelButton = document.createElement('button');
         cancelButton.classList.add(styles.button);
-        cancelButton.innerText = this.buttons[1];
+        cancelButton.innerHTML = this.buttons[1];
         cancelButton.addEventListener('click', () => this.clear());
         thirdLine.append(cancelButton);
       }
