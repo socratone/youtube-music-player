@@ -3,6 +3,7 @@ import Page from './Page';
 import getVideosByQuery from '../helper/getVideosByQuery';
 import filterVideos from '../helper/filterVideos';
 import Modal from '../common/Modal';
+import Dropdown from '../common/Dropdown';
 
 class SearchPage extends Page {
   constructor() {
@@ -17,6 +18,7 @@ class SearchPage extends Page {
     
     videos.forEach(video => {
       const li = document.createElement('li');
+      li.classList.add(styles.searchResultList);
 
       const setThumbnail = () => {
         const thumbnail = document.createElement('div');
@@ -67,7 +69,44 @@ class SearchPage extends Page {
         const ellipsis = document.createElement('div');
         ellipsis.classList.add(styles.searchResultListEllipsis);
         const icon = '<i class="fa fa-ellipsis-v" aria-hidden="true"></i>';
-        ellipsis.insertAdjacentHTML('beforeend', icon)
+        const that = this;
+        ellipsis.addEventListener('click', function () {
+          const resetEvents = () => {
+            that.dropdown = null;
+            window.onclick = null;
+          }
+
+          if (that.dropdown) {
+            that.dropdown.clear();
+            return resetEvents();
+          }
+
+          that.dropdown = new Dropdown();
+          that.dropdown.setTarget(this);
+          that.dropdown.setTitles(['현재 재생목록에 담기', '플레이리스트에 담기']);
+          that.dropdown.setCallbacks([() => {
+            console.log('현재 재생목록에 담습니다.')
+            // TODO: 현재 재생 비디오 앞에 추가
+            resetEvents();
+          }, () => {
+            console.log('플레이리스트에 담습니다.')
+            // TODO: 모달창 생성
+            resetEvents();
+          }]);
+          that.dropdown.setDirection('left')
+          that.dropdown.setGap(6)
+          that.dropdown.setOffset(0)
+          that.dropdown.show();
+
+          window.onclick = ({ target }) => {
+            // 자기 자신을 클릭했을 때는 작동하지 않는다.
+            if (target.classList.contains(styles.searchResultListEllipsis)) return;
+            if (target.parentElement?.classList.contains(styles.searchResultListEllipsis)) return;
+            that.dropdown.clear();
+            resetEvents();
+          }
+        });
+        ellipsis.insertAdjacentHTML('beforeend', icon);
         li.append(ellipsis);
       };
 
@@ -98,7 +137,7 @@ class SearchPage extends Page {
       }
 
       this.clearSearchResultList();
-      const data = await getVideosByQuery(query, 2);
+      const data = await getVideosByQuery(query, 10);
       if (data.error) {
         return console.log(data.error.code, data.error.message);
       } 
