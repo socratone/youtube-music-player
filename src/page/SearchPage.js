@@ -88,9 +88,7 @@ class SearchPage extends Page {
 
   appendSearchComponent() {
     const handleButtonClick = async () => {
-      this.clearSearchResultList();
       const query = this.input.value;
-
       if (query.length === 0) {
         const modal = new Modal('small');
         modal.setTitle('알림');
@@ -98,10 +96,13 @@ class SearchPage extends Page {
         modal.setButtons('확인');
         return modal.show();
       }
+      
+      this.clearSearchResultList();
       const data = await getVideosByQuery(query, 2);
       if (data.error) {
         return console.log(data.error.code, data.error.message);
       } 
+
       const videos = data.items;
       const filteredVideos = filterVideos(videos)
       console.log('filteredVideos:', filteredVideos)
