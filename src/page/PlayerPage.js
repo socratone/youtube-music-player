@@ -1,6 +1,7 @@
 import styles from './PlayerPage.module.scss';
 import Page from './Page';
 import { PINK } from '../common/color';
+import Dropdown from '../common/Dropdown';
 
 class PlayerPage extends Page {
   constructor() {
@@ -223,6 +224,7 @@ class PlayerPage extends Page {
 
     videos.forEach(video => {
       const li = document.createElement('li');
+      li.classList.add(styles.cueListItem)
 
       const setThumbnail = () => {
         const thumbnail = document.createElement('div');
@@ -254,6 +256,43 @@ class PlayerPage extends Page {
         const cueListEllipsis = document.createElement('div');
         cueListEllipsis.classList.add(styles.cueListEllipsis);
         const icon = '<i class="fa fa-ellipsis-v" aria-hidden="true"></i>';
+        const that = this;
+        cueListEllipsis.addEventListener('click', function () {
+          const resetEvents = () => {
+            that.dropdown = null;
+            window.onclick = null;
+          }
+
+          if (that.dropdown) {
+            that.dropdown.clear();
+            return resetEvents();
+          }
+
+          that.dropdown = new Dropdown();
+          that.dropdown.setTarget(this);
+          that.dropdown.setTitles(['플레이리스트에 담기', '삭제']);
+          that.dropdown.setCallbacks([() => {
+            console.log('플레이리스트에 담습니다.')
+            // TODO: 현재 재생 비디오 앞에 추가
+            resetEvents();
+          }, () => {
+            console.log('삭제합니다.')
+            // TODO: 모달창 생성
+            resetEvents();
+          }]);
+          that.dropdown.setDirection('left')
+          that.dropdown.setGap(6)
+          that.dropdown.setOffset(0)
+          that.dropdown.show();
+
+          window.onclick = ({ target }) => {
+            // 자기 자신을 클릭했을 때는 작동하지 않는다.
+            if (target.classList.contains(styles.cueListEllipsis)) return;
+            if (target.parentElement?.classList.contains(styles.cueListEllipsis)) return;
+            that.dropdown.clear();
+            resetEvents();
+          }
+        });
         cueListEllipsis.insertAdjacentHTML('beforeend', icon)
         li.append(cueListEllipsis);
       };

@@ -42,7 +42,7 @@
   padding-left: 8px;
   overflow: auto;
 
-  li {
+  .cueListItem {
     display: grid;
     grid-template-columns: 60px 1fr 30px;
     height: 60px;
@@ -69,6 +69,7 @@
     }
 
     .cueListEllipsis {
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
