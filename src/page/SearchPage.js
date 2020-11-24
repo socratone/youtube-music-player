@@ -96,7 +96,7 @@ class SearchPage extends Page {
         modal.setButtons('확인');
         return modal.show();
       }
-      
+
       this.clearSearchResultList();
       const data = await getVideosByQuery(query, 2);
       if (data.error) {
@@ -138,10 +138,10 @@ class SearchPage extends Page {
     localStorage.setItem('search-result-list', JSON.stringify(videos));
   }
 
-  loadSearchResultList() {
+  getSavedSearchResultList() {
     const videos = localStorage.getItem('search-result-list');
     if (videos) return JSON.parse(videos);
-    return false;
+    return [];
   }
 }
 
