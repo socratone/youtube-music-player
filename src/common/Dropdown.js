@@ -44,7 +44,8 @@ class Dropdown {
         
         const li = document.createElement('li');
         li.classList.add(styles.dropdownItem);
-        li.addEventListener('click', () => {
+        li.addEventListener('click', (event) => {
+          event.stopPropagation();
           this.callbacks[i]();
           this.clear();
         });
