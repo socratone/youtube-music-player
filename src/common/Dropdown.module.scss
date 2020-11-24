@@ -1,0 +1,22 @@
+@import '../common/color.scss';
+
+.dropdown {
+  position: absolute;
+  padding: 8px 0;
+  background-color: $white;
+  color: $black;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+
+  .dropdownItem {
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 14px;
+    padding: 6px 18px;
+    &:hover {
+      background-color: $pink;
+      color: white;
+    }
+  }
+}
