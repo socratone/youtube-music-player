@@ -6,19 +6,19 @@ import Screen from './Screen';
 import PlaylistPage from './page/PlaylistPage';
 import PlayerPage from './page/PlayerPage';
 import SearchPage from './page/SearchPage';
-
-import Modal from './common/Modal';
+import getPlaylist from './helper/getPlaylist';
 
 import { videos, userLists } from './common/fakeData';
 
 let playerPage, player;
 
-function init() {
+async function init() {
   const screen = new Screen();
   document.body.append(screen.element);
 
   const playlistPage = new PlaylistPage();
   playlistPage.setPageHeight();
+  const userLists = await getPlaylist();
   playlistPage.appendPlaylist(userLists);
   playlistPage.appendAddPlaylistButton();
   // playlistPage.show();
@@ -26,8 +26,8 @@ function init() {
   
   playerPage = new PlayerPage();
   playerPage.setPageHeight();
-  // playerPage.show();
-  playerPage.hide();
+  playerPage.show();
+  // playerPage.hide();
   playerPage.appendYoutubeVideo();
   
   const searchPage = new SearchPage();
@@ -35,8 +35,8 @@ function init() {
   searchPage.appendSearchComponent();
   const videos = searchPage.getSavedSearchResultList();
   searchPage.appendSearchResultList(videos);
-  searchPage.show();
-  // searchPage.hide();
+  // searchPage.show();
+  searchPage.hide();
   
   const nav = new Nav();
   nav.append(playlistPage);
