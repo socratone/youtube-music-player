@@ -1,9 +1,8 @@
+import { url } from '../config/config';
 import Modal from '../common/Modal';
 
-const url = 'http://localhost:4000/api/'
-
 const getPlaylist = () => {
-  return fetch(url + 'playlist_video')
+  return fetch(url + '/playlist_video')
     .then(response => {
       if (response.status !== 200) throw new Error(response.statusText);
       console.log('response:', response)
