@@ -107,7 +107,7 @@ class PlaylistPage extends Page {
           const image = `https://i.ytimg.com/vi/${userList.videos[0].videoId}/mqdefault.jpg`;
           thumbnail.style.backgroundImage = `url(${image})`;
         } else {
-          thumbnail.style.backgroundColor = 'grey';
+          thumbnail.style.backgroundColor = 'black';
         }
 
         setHover();
