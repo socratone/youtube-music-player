@@ -2,7 +2,7 @@ import axios from 'axios';
 import { url } from '../config/config';
 import Modal from '../common/Modal';
 
-const postNewPlaylist = async title => {
+const postPlaylist = async title => {
   if (title.length < 1) {
     const modal = new Modal('small');
     modal.setTitle('알림');
@@ -14,7 +14,7 @@ const postNewPlaylist = async title => {
 
   try {
     const body = { title };
-    const response = await axios.post(`${url}/api/new-playlist`, body);
+    const response = await axios.post(`${url}/playlist`, body);
     if (response.status !== 200) throw new Error(response.statusText);
     return { listId: response.data, title, videos: [] };
   } catch (error) {
@@ -27,4 +27,4 @@ const postNewPlaylist = async title => {
   }
 };
 
-export default postNewPlaylist;
+export default postPlaylist;

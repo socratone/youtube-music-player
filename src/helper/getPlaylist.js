@@ -4,7 +4,7 @@ import Modal from '../common/Modal';
 
 const getPlaylist = async () => {
   try {
-    const response = await axios.get(`${url}/api/playlist`);
+    const response = await axios.get(`${url}/playlist`);
     if (response.status !== 200) throw new Error(response.statusText);
     return response.data;
   } catch (error) {

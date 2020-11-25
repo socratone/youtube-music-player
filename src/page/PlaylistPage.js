@@ -1,7 +1,7 @@
 import styles from './PlaylistPage.module.scss';
 import Page from './Page';
 import Modal from '../common/Modal';
-import postNewPlaylist from '../helper/postNewPlaylist';
+import postPlaylist from '../helper/postPlaylist';
 import { PINK, GREY } from '../common/color';
 
 class PlaylistPage extends Page {
@@ -163,7 +163,7 @@ class PlaylistPage extends Page {
       modal.setButtons('OK', 'Cancel');
       modal.setInput('100%');
       modal.setCallback(async () => { 
-        const playlist = await postNewPlaylist(modal.input.value);
+        const playlist = await postPlaylist(modal.input.value);
         if (playlist) {
           this.playlists.push(playlist);
           this.clearPlaylist();
