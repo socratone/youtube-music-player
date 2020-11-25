@@ -1,6 +1,7 @@
 import styles from './PlaylistPage.module.scss';
 import Page from './Page';
 import Modal from '../common/Modal';
+import postNewPlaylist from '../helper/postNewPlaylist';
 import { PINK, GREY } from '../common/color';
 
 class PlaylistPage extends Page {
@@ -10,7 +11,8 @@ class PlaylistPage extends Page {
     this.icon = 'fa-list-ul';
   }
 
-  appendPlaylist(userLists) {
+  appendPlaylist(playlists) {
+    this.playlists = playlists;
     const getClickedIdFromClassValue = (target, stringNotId) => {
       const classValue = target.parentElement.classList.value;
       const classStrings = classValue.split(' ');
@@ -19,7 +21,7 @@ class PlaylistPage extends Page {
     };
 
     const getVideosById = id => {
-      const [ clickedUserList ] = userLists.filter(userList => userList.listId.toString() === id);
+      const [ clickedUserList ] = playlists.filter(userList => userList.listId.toString() === id);
       const { videos } = clickedUserList;
       return videos;
     };
@@ -27,7 +29,7 @@ class PlaylistPage extends Page {
     this.listWrap = document.createElement('ul');
     this.listWrap.classList.add(styles.listWrap);
     
-    userLists.forEach(userList => {
+    playlists.forEach(userList => {
       const li = document.createElement('li');
       li.classList.add(styles.list);
 
@@ -160,9 +162,13 @@ class PlaylistPage extends Page {
       modal.setDescription('새로 생성할 재생 리스트의 이름을 입력하세요.');
       modal.setButtons('OK', 'Cancel');
       modal.setInput('100%');
-      modal.setCallback(() => { 
-        // TODO: 재생 리스트 생성
-        console.log('다음 이름으로 재생 리스트를 생성합니다:', modal.input.value)
+      modal.setCallback(async () => { 
+        const playlist = await postNewPlaylist(modal.input.value);
+        if (playlist) {
+          this.playlists.push(playlist);
+          this.clearPlaylist();
+          this.appendPlaylist(this.playlists);
+        }
       })
       modal.show();
     });
@@ -171,6 +177,10 @@ class PlaylistPage extends Page {
     li.append(wrap);
     
     this.listWrap.append(li);
+  }
+
+  clearPlaylist() {
+    this.listWrap.remove();
   }
 }
 
