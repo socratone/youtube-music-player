@@ -32,30 +32,28 @@ class PlaylistPage extends Page {
       li.classList.add(styles.list);
 
       const setThumbnail = () => {
-        const thumbnail = document.createElement('div');
-        thumbnail.classList.add(styles.listThumbnail);
-        thumbnail.style.backgroundImage = `url(https://i.ytimg.com/vi/${userList.videos[0].videoId}/mqdefault.jpg)`;
-        
         let hover;
         const setHover = () => {
           const playButton = document.createElement('a');
           playButton.classList.add(styles.playButton);
           playButton.classList.add(userList.listId);
           playButton.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
-
-          playButton.addEventListener('click', ({ target }) => {
-            const id = getClickedIdFromClassValue(target, styles.playButton);
-            const videos = getVideosById(id);
-
-            this.playerPage.player.pauseVideo();
-            this.playerPage.clearCueList();
-            this.playerPage.appendCueList(videos);
-            this.playerPage.setTitleColor(videos[0].videoId);
-            this.playerPage.clearTimer();
-            this.playerPage.playVideoId(videos[0].videoId);
-            this.hide();
-            this.playerPage.show();
-          });
+          
+          if (userList.videos[0]) {
+            playButton.addEventListener('click', ({ target }) => {
+              const id = getClickedIdFromClassValue(target, styles.playButton);
+              const videos = getVideosById(id);
+  
+              this.playerPage.player.pauseVideo();
+              this.playerPage.clearCueList();
+              this.playerPage.appendCueList(videos);
+              this.playerPage.setTitleColor(videos[0].videoId);
+              this.playerPage.clearTimer();
+              this.playerPage.playVideoId(videos[0].videoId);
+              this.hide();
+              this.playerPage.show();
+            });
+          }
 
           const editButton = document.createElement('a');
           editButton.classList.add(styles.editButton);
@@ -100,6 +98,16 @@ class PlaylistPage extends Page {
             eraseButton.style.color = '';
           });
         }
+
+        const thumbnail = document.createElement('div');
+        thumbnail.classList.add(styles.listThumbnail);
+        if (userList.videos[0]) {
+          const image = `https://i.ytimg.com/vi/${userList.videos[0].videoId}/mqdefault.jpg`;
+          thumbnail.style.backgroundImage = `url(${image})`;
+        } else {
+          thumbnail.style.backgroundColor = 'grey';
+        }
+
         setHover();
 
         const wrap = document.createElement('div');
