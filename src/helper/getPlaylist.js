@@ -2,10 +2,9 @@ import { url } from '../config/config';
 import Modal from '../common/Modal';
 
 const getPlaylist = () => {
-  return fetch(url + '/api/playlist_video')
+  return fetch(url + '/api/playlist')
     .then(response => {
       if (response.status !== 200) throw new Error(response.statusText);
-      console.log('response:', response)
       return response.json()
     })
     .catch(error => {
