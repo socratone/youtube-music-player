@@ -1,11 +1,8 @@
+import axios from 'axios';
 import { url } from '../config/config';
 import Modal from '../common/Modal';
 
-const myHeaders = new Headers();
-myHeaders.append('Content-Type', 'application/json');
-
 const postNewPlaylist = async title => {
-  title.toString();
   if (title.length < 1) {
     const modal = new Modal('small');
     modal.setTitle('알림');
@@ -16,17 +13,10 @@ const postNewPlaylist = async title => {
   }
 
   try {
-    const body = JSON.stringify({ title });
-    const response = await fetch(url + '/api/new-playlist', {
-      method: 'POST',
-      headers: myHeaders,
-      body,
-      redirect: 'follow',
-    });
+    const body = { title };
+    const response = await axios.post(`${url}/api/new-playlist`, body);
     if (response.status !== 200) throw new Error(response.statusText);
-    const listId = await response.json();
-    const list = { listId, title, videos: [] };
-    return list;
+    return { listId: response.data, title, videos: [] };
   } catch (error) {
     const modal = new Modal('medium');
     modal.setTitle('오류');
