@@ -168,6 +168,7 @@ class PlaylistPage extends Page {
           this.playlists.push(playlist);
           this.clearPlaylist();
           this.appendPlaylist(this.playlists);
+          this.appendAddPlaylistButton();
         }
       })
       modal.show();
