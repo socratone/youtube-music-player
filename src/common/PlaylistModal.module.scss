@@ -1,0 +1,37 @@
+@import '../common/color.scss';
+@import './Modal.module.scss';
+
+.playlist {
+  margin-top: 8px;
+  overflow: auto;
+
+  .playlistItem {
+    cursor: pointer;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    height: 60px;
+    margin-bottom: 8px;
+
+    .thumbnail {
+      width: 60px;
+      height: 60px;
+      background-size: cover;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      padding-left: 8px;
+    }
+
+    &:hover {
+      color: $white;
+      background-color: $pink;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}
