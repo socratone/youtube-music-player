@@ -2,6 +2,7 @@ import styles from './PlaylistPage.module.scss';
 import Page from './Page';
 import Modal from '../common/Modal';
 import postPlaylist from '../helper/postPlaylist';
+import deletePlaylist from '../helper/deletePlaylist';
 import { PINK, GREY } from '../common/color';
 
 class PlaylistPage extends Page {
@@ -74,9 +75,21 @@ class PlaylistPage extends Page {
           eraseButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
 
           eraseButton.addEventListener('click', ({ target }) => {
-            const id = getClickedIdFromClassValue(target, styles.eraseButton);
-            // TODO: api 요청
-            console.log('다음 listId를 삭제 요청합니다:', id);
+            const modal = new Modal('small');
+            modal.setTitle('Playlist');
+            modal.setDescription('정말로 삭제하시겠습니까?');
+            modal.setButtons('OK', 'Cancel');
+            modal.setCallback(async () => { 
+              const id = getClickedIdFromClassValue(target, styles.eraseButton);
+              const isOk = await deletePlaylist(id);
+              if (isOk) {
+                this.playlists = this.playlists.filter(playlist => playlist.listId !== Number(id));
+                this.clearPlaylist();
+                this.appendPlaylist(this.playlists);
+                this.appendAddPlaylistButton();
+              }
+            });
+            modal.show();
           });
 
           // 이상은 buttons 이하는 hover
