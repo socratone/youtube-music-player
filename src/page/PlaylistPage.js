@@ -3,6 +3,7 @@ import Page from './Page';
 import Modal from '../common/Modal';
 import postPlaylist from '../helper/postPlaylist';
 import deletePlaylist from '../helper/deletePlaylist';
+import putPlaylist from '../helper/putPlaylist';
 import { PINK, GREY } from '../common/color';
 
 class PlaylistPage extends Page {
@@ -65,8 +66,26 @@ class PlaylistPage extends Page {
 
           editButton.addEventListener('click', ({ target }) => {
             const id = getClickedIdFromClassValue(target, styles.editButton);
-            // TODO: api 요청
-            console.log('다음 listId를 수정 요청합니다:', id);
+            const modal = new Modal('medium');
+            modal.setTitle('Playlist');
+            modal.setDescription('수정하고 싶은 이름을 입력하세요.');
+            modal.setButtons('OK', 'Cancel');
+            modal.setInput('100%');
+            modal.setCallback(async () => { 
+              const isOk = await putPlaylist(id, modal.input.value);
+              if (isOk) {
+                this.playlists = this.playlists.map(playlist => {
+                  if (playlist.listId === Number(id)) {
+                    playlist.title = modal.input.value;
+                  }
+                  return playlist;
+                });
+                this.clearPlaylist();
+                this.appendPlaylist(this.playlists);
+                this.appendAddPlaylistButton();
+              }
+            })
+            modal.show();
           });
 
           const eraseButton = document.createElement('a');
