@@ -4,6 +4,7 @@ import getVideosByQuery from '../helper/getVideosByQuery';
 import filterVideos from '../helper/filterVideos';
 import Modal from '../common/Modal';
 import Dropdown from '../common/Dropdown';
+import PlaylistModal from '../common/PlaylistModal';
 
 class SearchPage extends Page {
   constructor() {
@@ -89,8 +90,12 @@ class SearchPage extends Page {
             // TODO: 현재 재생 비디오 앞에 추가
             resetEvents();
           }, () => {
-            console.log('플레이리스트에 담습니다.')
-            // TODO: 모달창 생성
+            const modal = new PlaylistModal();
+            modal.setTitle('Playlist');
+            modal.setDescription('음악을 담을 플레이리스트를 선택하세요.');
+            modal.setPlaylist(that.playlistPage);
+            modal.setVideo(video);
+            modal.show();
             resetEvents();
           }]);
           that.dropdown.setDirection('left')
@@ -181,6 +186,10 @@ class SearchPage extends Page {
     const videos = localStorage.getItem('search-result-list');
     if (videos) return JSON.parse(videos);
     return [];
+  }
+
+  setPlaylistPageInstance(playlistPage) {
+    this.playlistPage = playlistPage;
   }
 }
 

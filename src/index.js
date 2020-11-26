@@ -31,6 +31,7 @@ async function init() {
   playerPage.appendYoutubeVideo();
   
   const searchPage = new SearchPage();
+  searchPage.setPlaylistPageInstance(playlistPage);
   searchPage.setPageHeight();
   searchPage.appendSearchComponent();
   const videos = searchPage.getSavedSearchResultList();
