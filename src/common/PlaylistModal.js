@@ -1,5 +1,6 @@
 import styles from './PlaylistModal.module.scss';
 import postPlaylistVideo from '../helper/postPlaylistVideo';
+import Modal from '../common/Modal';
 
 class PlaylistModal {
   setTitle(title) { // title: string
@@ -56,6 +57,16 @@ class PlaylistModal {
         li.classList.add(item.listId);
         li.addEventListener('click', async () => {
           const listId = item.listId;
+          for (let i = 0; i < item.videos.length; i++) {
+            if (item.videos[i].videoId === this.video.videoId) {
+              const modal = new Modal('small');
+              modal.setTitle('알림');
+              modal.setDescription('이미 추가된 음악입니다.');
+              modal.setButtons('확인');
+              modal.show();
+              return this.clear();
+            }
+          }
           const isOk = await postPlaylistVideo(listId, this.video)
           if (isOk) {
             const lists = this.playlistPage.playlists.map(playlist => {
