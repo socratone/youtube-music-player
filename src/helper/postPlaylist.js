@@ -16,7 +16,8 @@ const postPlaylist = async title => {
     const body = { title };
     const response = await axios.post(`${url}/playlist`, body);
     if (response.status !== 200) throw new Error(response.statusText);
-    return { listId: response.data, title, videos: [] };
+    const { listId } = response.data;
+    return { listId, title, videos: [] };
   } catch (error) {
     const modal = new Modal('medium');
     modal.setTitle('오류');
