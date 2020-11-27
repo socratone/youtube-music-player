@@ -2,7 +2,7 @@ import styles from './PlayerPage.module.scss';
 import Page from './Page';
 import { PINK } from '../common/color';
 import Dropdown from '../common/Dropdown';
-import PlaylistModal from '../common/PlaylistModal';
+import PostPlaylistModal from '../common/PostPlaylistModal';
 
 class PlayerPage extends Page {
   constructor() {
@@ -267,7 +267,7 @@ class PlayerPage extends Page {
           that.dropdown.setTarget(this);
           that.dropdown.setTitles(['플레이리스트에 담기', '현재 재생목록에서 삭제']);
           that.dropdown.setCallbacks([() => {
-            const modal = new PlaylistModal();
+            const modal = new PostPlaylistModal();
             modal.setTitle('Playlist');
             modal.setDescription('음악을 담을 플레이리스트를 선택하세요.');
             modal.setPlaylist(that.playlistPage);

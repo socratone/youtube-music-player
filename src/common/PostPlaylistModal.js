@@ -1,6 +1,6 @@
-import styles from './PlaylistModal.module.scss';
+import styles from './PostPlaylistModal.module.scss';
 import postPlaylistVideo from '../helper/postPlaylistVideo';
-import Modal from '../common/Modal';
+import Modal from './Modal';
 
 class PlaylistModal {
   setTitle(title) { // title: string
@@ -129,7 +129,7 @@ class PlaylistModal {
     
     this.modal = document.createElement('section');
     this.modal.classList.add(styles.modal);
-    this.modal.style.height = window.innerHeight - 300 + 'px';
+    this.modal.style.height = window.innerHeight - 120 + 'px';
   
     this.modal.append(firstLine, secondLine, playlist, thirdLine);
 

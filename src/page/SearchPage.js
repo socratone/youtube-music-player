@@ -4,7 +4,7 @@ import getVideosByQuery from '../helper/getVideosByQuery';
 import filterVideos from '../helper/filterVideos';
 import Modal from '../common/Modal';
 import Dropdown from '../common/Dropdown';
-import PlaylistModal from '../common/PlaylistModal';
+import PostPlaylistModal from '../common/PostPlaylistModal';
 
 class SearchPage extends Page {
   constructor() {
@@ -93,7 +93,7 @@ class SearchPage extends Page {
             that.playerPage.setTitleColor(that.currentVideoId);
             resetEvents();
           }, () => {
-            const modal = new PlaylistModal();
+            const modal = new PostPlaylistModal();
             modal.setTitle('Playlist');
             modal.setDescription('음악을 담을 플레이리스트를 선택하세요.');
             modal.setPlaylist(that.playlistPage);
