@@ -82,16 +82,6 @@ class PlaylistModal {
             this.playlistPage.appendAddPlaylistButton();
           }
 
-
-
-          console.log('video:', this.video);
-
-
-
-
-
-
-          console.log('listId:', listId)
           this.clear();
         });
 
