@@ -8,8 +8,6 @@ import PlayerPage from './page/PlayerPage';
 import SearchPage from './page/SearchPage';
 import getPlaylist from './helper/getPlaylist';
 
-import { videos, userLists } from './common/fakeData';
-
 let playerPage, player;
 
 async function init() {
@@ -69,7 +67,7 @@ window.onYouTubeIframeAPIReady = function() {
       color: 'white',
       controls: 0,
     },
-    videoId: videos[0].videoId,
+    videoId: loadLastCuelist()[0].videoId,
     events: {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange
@@ -78,7 +76,7 @@ window.onYouTubeIframeAPIReady = function() {
 }
 
 function onPlayerReady(event) {
-  const videos = JSON.parse(localStorage.getItem('last-cuelist'));
+  const videos = loadLastCuelist();
   
   playerPage.setCurrentVideoId(videos[0].videoId);
   playerPage.setPlayer(player);
@@ -105,4 +103,10 @@ function onPlayerStateChange({ data }) {
     playerPage.revealPlayButton();
     playerPage.clearTimer();
   }
+}
+
+function loadLastCuelist() {
+  let cuelist = JSON.parse(localStorage.getItem('last-cuelist'));
+  if (!cuelist) cuelist = [{ videoId: '-5q5mZbe3V8', title: 'BTS (방탄소년단) &#39;Life Goes On&#39; Official MV'}];
+  return cuelist;
 }
