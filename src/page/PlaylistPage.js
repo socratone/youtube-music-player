@@ -54,7 +54,6 @@ class PlaylistPage extends Page {
               this.playerPage.setTitleColor(videos[0].videoId);
               this.playerPage.clearTimer();
               this.playerPage.setCurrentVideoId(videos[0].videoId);
-              this.playerPage.saveCurrentVideoId(video.videoId);
               this.playerPage.playVideoId(videos[0].videoId);
               this.hide();
               this.playerPage.show();

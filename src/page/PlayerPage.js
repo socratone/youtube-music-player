@@ -33,10 +33,6 @@ class PlayerPage extends Page {
   setCurrentVideoId(videoId) {
     this.currentVideoId = videoId;
   }
-  
-  saveCurrentVideoId(videoId) {
-    localStorage.setItem('current-video-id', JSON.stringify(videoId));
-  }
 
   setPlayer(player) {
     this.player = player;
@@ -52,8 +48,7 @@ class PlayerPage extends Page {
       
     this.setTitleColor(video.videoId);
     this.playVideoId(video.videoId);
-    this.setCurrentVideoId(video.videoId)
-    this.saveCurrentVideoId(video.videoId);
+    this.setCurrentVideoId(video.videoId);
 
     this.play.style.display = 'none';
     this.pause.style.display = 'block';
@@ -70,7 +65,6 @@ class PlayerPage extends Page {
     this.setTitleColor(video.videoId);
     this.playVideoId(video.videoId);
     this.setCurrentVideoId(video.videoId);
-    this.saveCurrentVideoId(video.videoId);
 
     this.play.style.display = 'none';
     this.pause.style.display = 'block';
@@ -245,7 +239,6 @@ class PlayerPage extends Page {
           this.clearTimer();
           this.progressBar.value = 0;
           this.setCurrentVideoId(video.videoId);
-          this.saveCurrentVideoId(video.videoId);
           this.setTitleColor(video.videoId);
           this.playVideoId(video.videoId);
           this.revealPauseButton();
