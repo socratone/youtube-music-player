@@ -78,6 +78,8 @@ window.onYouTubeIframeAPIReady = function() {
 }
 
 function onPlayerReady(event) {
+  const videos = JSON.parse(localStorage.getItem('last-cuelist'));
+  
   playerPage.setCurrentVideoId(videos[0].videoId);
   playerPage.setPlayer(player);
   playerPage.appendProgressBar();

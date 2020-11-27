@@ -33,7 +33,7 @@ class PlayerPage extends Page {
   setCurrentVideoId(videoId) {
     this.currentVideoId = videoId;
   }
-
+  
   saveCurrentVideoId(videoId) {
     localStorage.setItem('current-video-id', JSON.stringify(videoId));
   }
@@ -216,8 +216,9 @@ class PlayerPage extends Page {
 
     this.element.append(this.playButtons);    
   }
-
+  
   appendCueList(videos) {
+    localStorage.setItem('last-cuelist', JSON.stringify(videos));
     this.videos = videos;
 
     this.cueList = document.createElement('ul');
