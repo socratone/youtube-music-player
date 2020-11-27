@@ -1,6 +1,7 @@
 import styles from './PlaylistPage.module.scss';
 import Page from './Page';
 import Modal from '../common/Modal';
+import PutPlaylistModal from '../common/PutPlaylistModal';
 import postPlaylist from '../helper/postPlaylist';
 import deletePlaylist from '../helper/deletePlaylist';
 import putPlaylist from '../helper/putPlaylist';
@@ -16,7 +17,7 @@ class PlaylistPage extends Page {
   appendPlaylist(playlists) {
     this.playlists = playlists;
     const getClickedIdFromClassValue = (target, stringNotId) => {
-      const classValue = target.parentElement.classList.value;
+      const classValue = target.classList.value;
       const classStrings = classValue.split(' ');
       const [ id ] = classStrings.filter(string => string !== stringNotId);
       return id;
@@ -44,28 +45,36 @@ class PlaylistPage extends Page {
           playButton.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
           
           if (userList.videos[0]) {
-            playButton.addEventListener('click', ({ target }) => {
-              const id = getClickedIdFromClassValue(target, styles.playButton);
+            const that = this;
+            playButton.addEventListener('click', function () {
+              const id = getClickedIdFromClassValue(this, styles.playButton);
               const videos = getVideosById(id);
   
-              this.playerPage.player.pauseVideo();
-              this.playerPage.clearCueList();
-              this.playerPage.appendCueList(videos);
-              this.playerPage.setTitleColor(videos[0].videoId);
-              this.playerPage.clearTimer();
-              this.playerPage.setCurrentVideoId(videos[0].videoId);
-              this.playerPage.playVideoId(videos[0].videoId);
-              this.hide();
-              this.playerPage.show();
+              that.playerPage.player.pauseVideo();
+              that.playerPage.clearCueList();
+              that.playerPage.appendCueList(videos);
+              that.playerPage.setTitleColor(videos[0].videoId);
+              that.playerPage.clearTimer();
+              that.playerPage.setCurrentVideoId(videos[0].videoId);
+              that.playerPage.playVideoId(videos[0].videoId);
+              that.hide();
+              that.playerPage.show();
             });
           }
 
           const listButton = document.createElement('a');
           listButton.classList.add(styles.listButton);
+          listButton.classList.add(userList.listId);
           listButton.innerHTML = '<i class="fa fa-folder-o" aria-hidden="true"></i>';
           
-          listButton.addEventListener('click', ({ target }) => {
-            console.log('userList.listId:', userList.listId);
+          listButton.addEventListener('click', function () {
+            const id = getClickedIdFromClassValue(this, styles.listButton);
+            const videos = getVideosById(id);
+            const modal = new PutPlaylistModal();
+            modal.setTitle('Playlist');
+            modal.setDescription('플레이리스트를 수정하세요.');
+            modal.setVideos(videos);
+            modal.show();
           });
 
           listButton.addEventListener('mouseover', () => {
@@ -83,8 +92,9 @@ class PlaylistPage extends Page {
           editButton.classList.add(userList.listId);
           editButton.innerHTML = '<i class="fa fa-pencil" aria-hidden="true"></i>'
 
-          editButton.addEventListener('click', ({ target }) => {
-            const id = getClickedIdFromClassValue(target, styles.editButton);
+          const that = this;
+          editButton.addEventListener('click', function () {
+            const id = getClickedIdFromClassValue(this, styles.editButton);
             const modal = new Modal('medium');
             modal.setTitle('Playlist');
             modal.setDescription('수정하고 싶은 이름을 입력하세요.');
@@ -93,15 +103,15 @@ class PlaylistPage extends Page {
             modal.setCallback(async () => { 
               const isOk = await putPlaylist(id, modal.input.value);
               if (isOk) {
-                this.playlists = this.playlists.map(playlist => {
+                that.playlists = that.playlists.map(playlist => {
                   if (playlist.listId === Number(id)) {
                     playlist.title = modal.input.value;
                   }
                   return playlist;
                 });
-                this.clearPlaylist();
-                this.appendPlaylist(this.playlists);
-                this.appendAddPlaylistButton();
+                that.clearPlaylist();
+                that.appendPlaylist(that.playlists);
+                that.appendAddPlaylistButton();
               }
             })
             modal.show();
@@ -112,19 +122,19 @@ class PlaylistPage extends Page {
           eraseButton.classList.add(userList.listId);
           eraseButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
 
-          eraseButton.addEventListener('click', ({ target }) => {
+          eraseButton.addEventListener('click', function () {
             const modal = new Modal('small');
             modal.setTitle('Playlist');
             modal.setDescription('정말로 삭제하시겠습니까?');
             modal.setButtons('OK', 'Cancel');
             modal.setCallback(async () => { 
-              const id = getClickedIdFromClassValue(target, styles.eraseButton);
+              const id = getClickedIdFromClassValue(this, styles.eraseButton);
               const isOk = await deletePlaylist(id);
               if (isOk) {
-                this.playlists = this.playlists.filter(playlist => playlist.listId !== Number(id));
-                this.clearPlaylist();
-                this.appendPlaylist(this.playlists);
-                this.appendAddPlaylistButton();
+                that.playlists = that.playlists.filter(playlist => playlist.listId !== Number(id));
+                that.clearPlaylist();
+                that.appendPlaylist(that.playlists);
+                that.appendAddPlaylistButton();
               }
             });
             modal.show();
