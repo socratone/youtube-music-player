@@ -84,10 +84,13 @@ class SearchPage extends Page {
 
           that.dropdown = new Dropdown();
           that.dropdown.setTarget(this);
-          that.dropdown.setTitles(['현재 재생목록에 담기', '플레이리스트에 담기']);
+          that.dropdown.setTitles(['현재 재생목록에 추가', '플레이리스트에 담기']);
           that.dropdown.setCallbacks([() => {
-            console.log('현재 재생목록에 담습니다.')
-            // TODO: 현재 재생 비디오 앞에 추가
+            const videos = that.playerPage.videos
+            videos.unshift(video)
+            that.playerPage.clearCueList();
+            that.playerPage.appendCueList(videos);
+            that.playerPage.setTitleColor(that.currentVideoId);
             resetEvents();
           }, () => {
             const modal = new PlaylistModal();
