@@ -2,6 +2,7 @@ import styles from './PlayerPage.module.scss';
 import Page from './Page';
 import { PINK } from '../common/color';
 import Dropdown from '../common/Dropdown';
+import PlaylistModal from '../common/PlaylistModal';
 
 class PlayerPage extends Page {
   constructor() {
@@ -272,8 +273,12 @@ class PlayerPage extends Page {
           that.dropdown.setTarget(this);
           that.dropdown.setTitles(['플레이리스트에 담기', '삭제']);
           that.dropdown.setCallbacks([() => {
-            console.log('플레이리스트에 담습니다.')
-            // TODO: 현재 재생 비디오 앞에 추가
+            const modal = new PlaylistModal();
+            modal.setTitle('Playlist');
+            modal.setDescription('음악을 담을 플레이리스트를 선택하세요.');
+            modal.setPlaylist(that.playlistPage);
+            modal.setVideo(video);
+            modal.show();
             resetEvents();
           }, () => {
             console.log('삭제합니다.')
@@ -327,6 +332,10 @@ class PlayerPage extends Page {
   playVideoId(videoId) {
     this.isSetProgressBar = false;
     this.player.loadVideoById(videoId);
+  }
+
+  setPlaylistPageInstance(playlistPage) {
+    this.playlistPage = playlistPage;
   }
 }
 

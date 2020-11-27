@@ -25,6 +25,7 @@ async function init() {
   playlistPage.hide();
   
   playerPage = new PlayerPage();
+  playerPage.setPlaylistPageInstance(playlistPage);
   playerPage.setPageHeight();
   playerPage.show();
   // playerPage.hide();
