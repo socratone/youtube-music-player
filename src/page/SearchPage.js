@@ -58,6 +58,7 @@ class SearchPage extends Page {
           this.playerPage.setTitleColor(videoId);
           this.playerPage.clearTimer();
           this.playerPage.setCurrentVideoId(videoId);
+          this.playerPage.saveCurrentVideoId(video.videoId);
           this.playerPage.playVideoId(videoId);
           this.hide();
           this.playerPage.show();
