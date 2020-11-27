@@ -2,14 +2,15 @@
 @import './Modal.module.scss';
 
 .playlist {
+  height: 100%;
   margin-top: 8px;
   overflow: auto;
 
   .playlistItem {
-    cursor: pointer;
     list-style: none;
     display: grid;
-    grid-template-columns: 60px 1fr;
+    grid-template-columns: 60px 1fr 30px;
+    align-items: center;
     height: 60px;
     margin-bottom: 8px;
     border-radius: 3px;
@@ -22,17 +23,21 @@
     }
 
     .title {
-      display: flex;
-      align-items: center;
       padding-left: 8px;
+    }
+
+    .eraseButton {
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+
+      &:active {
+        transform: scale(0.9);
+      }
     }
 
     &:hover {
       background-color: whitesmoke;
-    }
-
-    &:active {
-      transform: scale(0.95);
     }
   }
 }

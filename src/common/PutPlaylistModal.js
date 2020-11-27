@@ -1,13 +1,26 @@
 import styles from './PutPlaylistModal.module.scss';
-import Modal from './Modal';
+import deletePlaylistVideos from '../helper/deletePlaylistVideos';
 
 class PutPlaylistModal {
+  constructor() {
+    this.eraseVideoIds = [];
+  }
+
   setTitle(title) { // title: string
     this.title = title;
   }
 
   setDescription(description) { // description: string, 줄바꿈을 위해 <br>을 넣을 수 있다.
     this.description = description;
+  }
+
+  setPlaylistId(id) {
+    this.listId = id;
+  }
+
+  setPlaylist(playlistPage) {
+    this.playlistPage = playlistPage;
+    this.playlists = this.playlistPage.playlists;
   }
 
   setVideos(videos) {
@@ -48,7 +61,6 @@ class PutPlaylistModal {
       this.videos.forEach(item => {
         const li = document.createElement('li');
         li.classList.add(styles.playlistItem);
-        li.classList.add(item.listId);
 
         const setThumbnail = () => {
           const thumbnail = document.createElement('div');
@@ -64,8 +76,21 @@ class PutPlaylistModal {
           li.append(title);
         };
 
+        const eraseButton = () => {
+          const eraseButton = document.createElement('a');
+          eraseButton.classList.add(styles.eraseButton);
+          eraseButton.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+          eraseButton.addEventListener('click', () => {
+            this.eraseVideoIds.push(item.videoId);
+            this.videos = this.videos.filter(video => video.videoId !== item.videoId);
+            li.remove();
+          });
+          li.append(eraseButton);
+        }
+
         setThumbnail();
         setTitle();
+        eraseButton();
         
         playlist.append(li);
       });
@@ -75,14 +100,36 @@ class PutPlaylistModal {
       thirdLine = document.createElement('div');
       thirdLine.classList.add(styles.thirdLine);
       
-      const firstButton = document.createElement('button');
-      firstButton.classList.add(styles.button);
-      firstButton.addEventListener('click', () => this.clear());
-      firstButton.innerHTML = '확인';
+      const okButton = document.createElement('button');
+      okButton.classList.add(styles.button);
+      okButton.addEventListener('click', async () => {
+        if (this.eraseVideoIds.length > 0) {
+          const isOk = await deletePlaylistVideos(this.listId, this.eraseVideoIds);
+          if (isOk) {
+            const [ list ] = this.playlistPage.playlists.filter(playlist => {
+              if (playlist.listId === this.listId) return true;
+              else return false;
+            });
+            list.videos = this.videos;
+  
+            this.playlistPage.clearPlaylist();
+            this.playlistPage.appendPlaylist(this.playlistPage.playlists);
+            this.playlistPage.appendAddPlaylistButton();
+          }
+        }
 
-      thirdLine.append(firstButton);
+        this.clear();
+      });
+      okButton.innerHTML = 'OK';
+      thirdLine.append(okButton);
+
+      const cancelButton = document.createElement('button');
+      cancelButton.classList.add(styles.button);
+      cancelButton.innerHTML = 'Cancel';
+      cancelButton.addEventListener('click', () => this.clear());
+      thirdLine.append(cancelButton);
     };
-    
+
     createFirstLine();
     createSecondLine();
     createPlaylist();

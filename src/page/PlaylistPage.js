@@ -44,8 +44,8 @@ class PlaylistPage extends Page {
           playButton.classList.add(userList.listId);
           playButton.innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
           
+          const that = this;
           if (userList.videos[0]) {
-            const that = this;
             playButton.addEventListener('click', function () {
               const id = getClickedIdFromClassValue(this, styles.playButton);
               const videos = getVideosById(id);
@@ -73,6 +73,8 @@ class PlaylistPage extends Page {
             const modal = new PutPlaylistModal();
             modal.setTitle('Playlist');
             modal.setDescription('플레이리스트를 수정하세요.');
+            modal.setPlaylist(that);
+            modal.setPlaylistId(userList.listId);
             modal.setVideos(videos);
             modal.show();
           });
@@ -92,7 +94,6 @@ class PlaylistPage extends Page {
           editButton.classList.add(userList.listId);
           editButton.innerHTML = '<i class="fa fa-pencil" aria-hidden="true"></i>'
 
-          const that = this;
           editButton.addEventListener('click', function () {
             const id = getClickedIdFromClassValue(this, styles.editButton);
             const modal = new Modal('medium');
