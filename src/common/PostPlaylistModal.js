@@ -2,7 +2,7 @@ import styles from './PostPlaylistModal.module.scss';
 import postPlaylistVideo from '../helper/postPlaylistVideo';
 import Modal from './Modal';
 
-class PlaylistModal {
+class PostPlaylistModal {
   setTitle(title) { // title: string
     this.title = title;
   }
@@ -157,4 +157,4 @@ class PlaylistModal {
   }
 }
 
-export default PlaylistModal;
+export default PostPlaylistModal;
