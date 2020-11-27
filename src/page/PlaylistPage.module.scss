@@ -44,11 +44,15 @@
     cursor: pointer;
     font-size: 30px;
     color: transparent;
-    transition-property: color;
-    transition-duration: 0.4s;
+    transition-property: color, transform;
+    transition-duration: 0.4s, 0.2s;
+
+    &:hover {
+      transform: scale(1.2);
+    }
 
     &:active {
-      transform: scale(0.9);
+      transform: scale(1);
     }
   }
 
