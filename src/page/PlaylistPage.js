@@ -60,6 +60,24 @@ class PlaylistPage extends Page {
             });
           }
 
+          const listButton = document.createElement('a');
+          listButton.classList.add(styles.listButton);
+          listButton.innerHTML = '<i class="fa fa-folder-o" aria-hidden="true"></i>';
+          
+          listButton.addEventListener('click', ({ target }) => {
+            console.log('userList.listId:', userList.listId);
+          });
+
+          listButton.addEventListener('mouseover', () => {
+            listButton.firstElementChild.classList.remove('fa-folder-o');
+            listButton.firstElementChild.classList.add('fa-folder-open-o');
+          });
+          
+          listButton.addEventListener('mouseout', () => {
+            listButton.firstElementChild.classList.remove('fa-folder-open-o');
+            listButton.firstElementChild.classList.add('fa-folder-o');
+          });
+          
           const editButton = document.createElement('a');
           editButton.classList.add(styles.editButton);
           editButton.classList.add(userList.listId);
@@ -116,21 +134,24 @@ class PlaylistPage extends Page {
           hover = document.createElement('div');
           hover.classList.add(styles.listThumbnailHover);
           hover.append(playButton);
-          hover.append(editButton);
+          hover.append(listButton);
           hover.append(eraseButton);
+          hover.append(editButton);
   
           hover.addEventListener('mouseover', () => {
             hover.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
             playButton.style.color = PINK;
-            editButton.style.color = GREY;
+            listButton.style.color = GREY;
             eraseButton.style.color = GREY;
+            editButton.style.color = GREY;
           });
           
           hover.addEventListener('mouseout', () => {
             hover.style.backgroundColor = '';
             playButton.style.color = '';
-            editButton.style.color = '';
+            listButton.style.color = '';
             eraseButton.style.color = '';
+            editButton.style.color = '';
           });
         }
 
