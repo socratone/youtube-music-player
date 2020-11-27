@@ -281,9 +281,6 @@ class PlayerPage extends Page {
             that.clearCueList();
             that.appendCueList(videos);
             that.setTitleColor(that.currentVideoId);
-
-
-
             resetEvents();
           }]);
           that.dropdown.setDirection('left')
