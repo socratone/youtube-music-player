@@ -47,7 +47,7 @@
     display: grid;
     grid-template-columns: 60px 1fr 30px;
     height: 60px;
-    color: $white;
+    color: $white-font;
     margin-bottom: 8px;
 
     .cueListThumbnail {
@@ -65,7 +65,7 @@
       }
 
       &:active {
-        color: $white;
+        color: $white-font;
       }
     }
 
@@ -81,7 +81,7 @@
       }
 
       &:active {
-        color: $white;
+        color: $white-font;
       }
     }
   }
