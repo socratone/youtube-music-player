@@ -271,7 +271,7 @@ class PlayerPage extends Page {
 
           that.dropdown = new Dropdown();
           that.dropdown.setTarget(this);
-          that.dropdown.setTitles(['플레이리스트에 담기', '삭제']);
+          that.dropdown.setTitles(['플레이리스트에 담기', '현재 재생목록에서 삭제']);
           that.dropdown.setCallbacks([() => {
             const modal = new PlaylistModal();
             modal.setTitle('Playlist');
@@ -281,8 +281,15 @@ class PlayerPage extends Page {
             modal.show();
             resetEvents();
           }, () => {
-            console.log('삭제합니다.')
-            // TODO: 모달창 생성
+            const videos = that.videos.filter(item => {
+              return item.videoId !== video.videoId;
+            });
+            that.clearCueList();
+            that.appendCueList(videos);
+            that.setTitleColor(that.currentVideoId);
+
+
+
             resetEvents();
           }]);
           that.dropdown.setDirection('left')
