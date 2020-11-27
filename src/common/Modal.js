@@ -135,7 +135,7 @@ class Modal {
   clear() {
     setTimeout(() => {
       this.element.remove();
-    }, 200);
+    }, 100);
   }
 }
 

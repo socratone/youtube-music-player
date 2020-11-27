@@ -153,7 +153,7 @@ class PostPlaylistModal {
   clear() {
     setTimeout(() => {
       this.element.remove();
-    }, 200);
+    }, 100);
   }
 }
 
