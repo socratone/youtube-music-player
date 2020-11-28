@@ -1,6 +1,6 @@
 import styles from './Page.module.scss';
 
-const NAV_HEIGHT = 30;
+const NAV_HEIGHT = 40;
 
 class Page {
   constructor() {
