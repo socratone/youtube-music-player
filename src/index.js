@@ -6,6 +6,7 @@ import Screen from './Screen';
 import PlaylistPage from './page/PlaylistPage';
 import PlayerPage from './page/PlayerPage';
 import SearchPage from './page/SearchPage';
+import SettingPage from './page/SettingPage';
 import getPlaylist from './helper/getPlaylist';
 
 let playerPage, player;
@@ -37,11 +38,14 @@ async function init() {
   searchPage.appendSearchResultList(videos);
   // searchPage.show();
   searchPage.hide();
+
+  const settingPage = new SettingPage();
   
   const nav = new Nav();
+  nav.append(searchPage);
   nav.append(playlistPage);
   nav.append(playerPage);
-  nav.append(searchPage);
+  nav.append(settingPage);
 
   screen.append(nav.element);
 
