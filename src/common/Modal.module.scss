@@ -104,4 +104,29 @@
       }
     }
   }
+
+  /* 스크롤 바 */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  /* 스크롤 바 밑의 배경 */
+  ::-webkit-scrollbar-track {
+    background: #ebebeb;
+  }
+  /* 실질적 스크롤 바 */
+  ::-webkit-scrollbar-thumb {
+    background-color: #d3d3d3;
+  }
+  /* 실질적 스크롤 바 위에 마우스를 올려다 둘 때 */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+  }
+  /* 실질적 스크롤 바를 클릭할 때 */
+  ::-webkit-scrollbar-thumb:active {
+    background: #d3d3d3;
+  }
+  /* 스크롤 바 상 하단 버튼 */
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
 }
