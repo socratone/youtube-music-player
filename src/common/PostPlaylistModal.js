@@ -129,7 +129,7 @@ class PostPlaylistModal {
     
     this.modal = document.createElement('section');
     this.modal.classList.add(styles.modal);
-    this.modal.style.height = window.innerHeight - 120 + 'px';
+    this.modal.style.height = window.innerHeight - 150 + 'px';
   
     this.modal.append(firstLine, secondLine, playlist, thirdLine);
 
