@@ -35,7 +35,7 @@ async function init() {
   searchPage.setPageHeight();
   searchPage.appendSearchComponent();
   const videos = searchPage.getSavedSearchResultList();
-  searchPage.appendSearchResultList(videos);
+  searchPage.appendSearchResultUl(videos);
   // searchPage.show();
   searchPage.hide();
 

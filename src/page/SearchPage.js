@@ -13,9 +13,9 @@ class SearchPage extends Page {
     this.icon = 'fa-search'
   }
 
-  appendSearchResultList(videos) {
+  appendSearchResultUl(videos) {
     this.ul = document.createElement('ul');
-    this.ul.classList.add(styles.searchResultListWrap);
+    this.ul.classList.add(styles.searchResultListUl);
     
     videos.forEach(video => {
       const li = document.createElement('li');
@@ -153,7 +153,7 @@ class SearchPage extends Page {
       const videos = data.items;
       const filteredVideos = filterVideos(videos)
       console.log('filteredVideos:', filteredVideos)
-      this.appendSearchResultList(filteredVideos);
+      this.appendSearchResultUl(filteredVideos);
       this.saveSearchResultList(filteredVideos)
     };
 
