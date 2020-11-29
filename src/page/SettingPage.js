@@ -18,7 +18,7 @@ class SettingPage extends Page {
   }
 
   appendSettingUl() {
-    const handleButtonClick = async () => {
+    const handleSearchButtonClick = async () => {
       const url = this.searchInput.value;
       if (url.length === 0) {
         const modal = new Modal('small');
@@ -98,40 +98,47 @@ class SettingPage extends Page {
       this.videoList.append(this.thumbnailWrap, this.thumbnailTitle);
     };
 
-    const searchInfo = `
-      <div class="${styles.searchInfo}">
-        <p>유튜브에서 비디오를 찾은 뒤 비디오의 링크를 입력하세요.</p> 
-        <p>이렇게도 음악을 추가할 수 있어요.</p>
-      </div>`;
+    const createSearchComponent = () => {
+      this.searchInput = document.createElement('input');
+      this.searchInput.type = 'text';
+      this.searchInput.addEventListener('keypress', ({ key }) => {
+        if (key === 'Enter') handleSearchButtonClick();
+      });
+     
+      const button = document.createElement('a');
+      button.innerHTML = '<i class="fa fa-search" aria-hidden="true"></i>';
+      
+      const buttonWrap = document.createElement('div');
+      buttonWrap.classList.add(styles.buttonWrap);
+      buttonWrap.append(button);
+      buttonWrap.addEventListener('click', handleSearchButtonClick);
+  
+      const searchComponent = document.createElement('div');
+      searchComponent.classList.add(styles.searchComponent);
+      searchComponent.append(this.searchInput, buttonWrap);
+      this.videoList.append(searchComponent);
+    };
 
-    this.searchInput = document.createElement('input');
-    this.searchInput.type = 'text';
-    this.searchInput.addEventListener('keypress', ({ key }) => {
-      if (key === 'Enter') handleButtonClick();
-    });
-   
-    const button = document.createElement('a');
-    button.innerHTML = '<i class="fa fa-search" aria-hidden="true"></i>';
-    
-    const buttonWrap = document.createElement('div');
-    buttonWrap.classList.add(styles.buttonWrap);
-    buttonWrap.append(button);
-    buttonWrap.addEventListener('click', handleButtonClick);
-
-    const searchComponent = document.createElement('div');
-    searchComponent.classList.add(styles.searchComponent);
-    searchComponent.append(this.searchInput, buttonWrap);
-    
+    const createSearchInfo = () => {
+      const searchInfo = `
+        <div class="${styles.searchInfo}">
+          <p>유튜브에서 비디오를 찾은 뒤 비디오의 링크를 입력하세요.</p> 
+          <p>이렇게도 음악을 추가할 수 있어요.</p>
+        </div>`;
+      this.videoList.insertAdjacentHTML('beforeend', searchInfo);
+    };
+      
     this.videoList = document.createElement('li');
     this.videoList.classList.add(styles.settingList);
-    this.videoList.append(searchComponent);
-    this.videoList.insertAdjacentHTML('beforeend', searchInfo);
+    
+    createSearchComponent();
+    createSearchInfo();
 
     const ul = document.createElement('ul');
     ul.classList.add(styles.settingUl);
     ul.append(this.videoList);
 
-    this.element.append(ul)
+    this.element.append(ul);
   }
 }
 
