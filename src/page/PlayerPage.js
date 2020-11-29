@@ -211,16 +211,16 @@ class PlayerPage extends Page {
     this.element.append(this.playButtons);    
   }
   
-  appendCueList(videos) {
+  appendCueUl(videos) {
     localStorage.setItem('last-cuelist', JSON.stringify(videos));
     this.videos = videos;
 
-    this.cueList = document.createElement('ul');
-    this.cueList.classList.add(styles.cueList);
+    this.cueUl = document.createElement('ul');
+    this.cueUl.classList.add(styles.cueUl);
 
     videos.forEach(video => {
       const li = document.createElement('li');
-      li.classList.add(styles.cueListItem)
+      li.classList.add(styles.cueList)
 
       const setThumbnail = () => {
         const thumbnail = document.createElement('div');
@@ -278,8 +278,8 @@ class PlayerPage extends Page {
             const videos = that.videos.filter(item => {
               return item.videoId !== video.videoId;
             });
-            that.clearCueList();
-            that.appendCueList(videos);
+            that.clearCueUl();
+            that.appendCueUl(videos);
             that.setTitleColor(that.currentVideoId);
             resetEvents();
           }]);
@@ -304,10 +304,10 @@ class PlayerPage extends Page {
       setCueListTitle();
       setCueListEllipsis();
 
-      this.cueList.append(li);
+      this.cueUl.append(li);
     });
 
-    this.element.append(this.cueList);
+    this.element.append(this.cueUl);
   }
 
   setTitleColor(videoId) {
@@ -323,8 +323,8 @@ class PlayerPage extends Page {
     });
   }
 
-  clearCueList() {
-    this.cueList.remove();
+  clearCueUl() {
+    this.cueUl.remove();
   }
 
   playVideoId(videoId) {

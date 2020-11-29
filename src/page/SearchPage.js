@@ -53,8 +53,8 @@ class SearchPage extends Page {
           this.playerPage.videos.unshift({ videoId, title });
 
           this.playerPage.player.pauseVideo();
-          this.playerPage.clearCueList();
-          this.playerPage.appendCueList(this.playerPage.videos);
+          this.playerPage.clearCueUl();
+          this.playerPage.appendCueUl(this.playerPage.videos);
           this.playerPage.setTitleColor(videoId);
           this.playerPage.clearTimer();
           this.playerPage.setCurrentVideoId(videoId);
@@ -88,8 +88,8 @@ class SearchPage extends Page {
           that.dropdown.setCallbacks([() => {
             const videos = that.playerPage.videos
             videos.unshift(video)
-            that.playerPage.clearCueList();
-            that.playerPage.appendCueList(videos);
+            that.playerPage.clearCueUl();
+            that.playerPage.appendCueUl(videos);
             that.playerPage.setTitleColor(that.currentVideoId);
             resetEvents();
           }, () => {

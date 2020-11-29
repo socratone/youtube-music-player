@@ -51,8 +51,8 @@ class PlaylistPage extends Page {
               const videos = getVideosById(id);
   
               that.playerPage.player.pauseVideo();
-              that.playerPage.clearCueList();
-              that.playerPage.appendCueList(videos);
+              that.playerPage.clearCueUl();
+              that.playerPage.appendCueUl(videos);
               that.playerPage.setTitleColor(videos[0].videoId);
               that.playerPage.clearTimer();
               that.playerPage.setCurrentVideoId(videos[0].videoId);

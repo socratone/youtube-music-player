@@ -36,14 +36,14 @@
   }
 }
 
-.cueList {
+.cueUl {
   display: flex;
   flex-direction: column;
   height: 100%;
   padding-left: 8px;
   overflow: auto;
 
-  .cueListItem {
+  .cueList {
     display: grid;
     grid-template-columns: 60px 1fr 30px;
     height: 60px;

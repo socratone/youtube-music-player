@@ -42,9 +42,9 @@ async function init() {
   const settingPage = new SettingPage();
   
   const nav = new Nav();
-  nav.append(searchPage);
   nav.append(playlistPage);
   nav.append(playerPage);
+  nav.append(searchPage);
   nav.append(settingPage);
 
   screen.append(nav.element);
@@ -86,7 +86,7 @@ function onPlayerReady(event) {
   playerPage.setPlayer(player);
   playerPage.appendProgressBar();
   playerPage.appendPlayButtons();
-  playerPage.appendCueList(videos);
+  playerPage.appendCueUl(videos);
   playerPage.setTitleColor(videos[0].videoId);
   playerPage.setProgressBar();
 }
