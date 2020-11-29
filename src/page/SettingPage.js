@@ -26,7 +26,7 @@ class SettingPage extends Page {
       const texts = `
         <p>유튜브에서 비디오를 찾은 뒤</p>
         <p>비디오의 링크를 붙여 넣으세요.</p>
-        <p>이렇게도 음악을 추가할 수 있어요.</p>`;
+        <p>여기서도 음악을 추가할 수 있어요.</p>`;
         
       const textWrap = document.createElement('div');
       textWrap.classList.add(styles.thumbnail);
