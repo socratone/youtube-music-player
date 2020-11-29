@@ -14,8 +14,8 @@ class SearchPage extends Page {
   }
 
   appendSearchResultList(videos) {
-    this.list = document.createElement('ul');
-    this.list.classList.add(styles.searchResultListWrap);
+    this.ul = document.createElement('ul');
+    this.ul.classList.add(styles.searchResultListWrap);
     
     videos.forEach(video => {
       const li = document.createElement('li');
@@ -122,15 +122,15 @@ class SearchPage extends Page {
       setTitle();
       setEllipsis();
 
-      this.list.append(li);
+      this.ul.append(li);
     });
 
-    this.element.append(this.list);
+    this.element.append(this.ul);
   }
 
   clearSearchResultList() {
-    if (this.list) this.list.remove();
-    this.list = null;
+    if (this.ul) this.ul.remove();
+    this.ul = null;
   }
 
   appendSearchComponent() {
