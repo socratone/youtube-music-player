@@ -22,6 +22,8 @@
       width: 100%;
       padding-bottom: 56.25%; /* 16:9 비율 */
       margin: 8px 0;
+      border: dashed rgb(85, 85, 85) 1px;
+      box-sizing: border-box;
   
       .thumbnail {
         position: absolute;

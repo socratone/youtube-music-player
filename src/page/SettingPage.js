@@ -18,6 +18,12 @@ class SettingPage extends Page {
   }
 
   appendSettingUl() {
+    const createInitalThumbnail = () => {
+      this.thumbnailWrap = document.createElement('div');
+      this.thumbnailWrap.classList.add(styles.thumbnailWrap);
+      this.videoList.append(this.thumbnailWrap);
+    };
+
     const handleSearchButtonClick = async () => {
       const url = this.searchInput.value;
       if (url.length === 0) {
@@ -68,6 +74,8 @@ class SettingPage extends Page {
         this.searchInput.value = '';
         this.thumbnailWrap.remove();
         this.thumbnailTitle.remove();
+
+        createInitalThumbnail();
       });
 
       const thumbnailHover = document.createElement('div');
@@ -89,6 +97,7 @@ class SettingPage extends Page {
       
       this.thumbnailWrap = document.createElement('div');
       this.thumbnailWrap.classList.add(styles.thumbnailWrap);
+      this.thumbnailWrap.style.border = '0';
       this.thumbnailWrap.append(thumbnail, thumbnailHover);
 
       this.thumbnailTitle = document.createElement('p');
@@ -133,6 +142,7 @@ class SettingPage extends Page {
     
     createSearchComponent();
     createSearchInfo();
+    if (!this.thumbnailWrap) createInitalThumbnail();
 
     const ul = document.createElement('ul');
     ul.classList.add(styles.settingUl);
