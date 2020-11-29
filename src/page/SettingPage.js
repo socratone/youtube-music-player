@@ -19,8 +19,30 @@ class SettingPage extends Page {
 
   appendSettingUl() {
     const createInitalThumbnail = () => {
+      const youtubeIcon = document.createElement('a');
+      youtubeIcon.classList.add(styles.youtubeIcon);
+      youtubeIcon.innerHTML = '<i class="fa fa-youtube-square" aria-hidden="true"></i>';
+
+      const texts = `
+        <p>유튜브에서 비디오를 찾은 뒤</p>
+        <p>비디오의 링크를 붙여 넣으세요.</p>
+        <p>이렇게도 음악을 추가할 수 있어요.</p>`;
+        
+      const textWrap = document.createElement('div');
+      textWrap.classList.add(styles.thumbnail);
+      textWrap.classList.add(styles.thumbnailBlank);
+      textWrap.append(youtubeIcon);
+      textWrap.insertAdjacentHTML('beforeend', texts);
+        
       this.thumbnailWrap = document.createElement('div');
       this.thumbnailWrap.classList.add(styles.thumbnailWrap);
+      this.thumbnailWrap.style.cursor = 'pointer';
+      
+      textWrap.addEventListener('click', () => {
+        window.open('https://www.youtube.com/');
+      });
+     
+      this.thumbnailWrap.append(textWrap);
       this.videoList.append(this.thumbnailWrap);
     };
 
@@ -127,21 +149,11 @@ class SettingPage extends Page {
       searchComponent.append(this.searchInput, buttonWrap);
       this.videoList.append(searchComponent);
     };
-
-    const createSearchInfo = () => {
-      const searchInfo = `
-        <div class="${styles.searchInfo}">
-          <p>유튜브에서 비디오를 찾은 뒤 비디오의 링크를 입력하세요.</p> 
-          <p>이렇게도 음악을 추가할 수 있어요.</p>
-        </div>`;
-      this.videoList.insertAdjacentHTML('beforeend', searchInfo);
-    };
       
     this.videoList = document.createElement('li');
     this.videoList.classList.add(styles.settingList);
     
     createSearchComponent();
-    createSearchInfo();
     if (!this.thumbnailWrap) createInitalThumbnail();
 
     const ul = document.createElement('ul');

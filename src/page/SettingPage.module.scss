@@ -9,21 +9,17 @@
   color: $white-font;
 
   .settingList {
-    .searchInfo {
-      margin: 0 30px;
-
-      p {
-        margin-bottom: 3px;
-      }
-    }
-
     .thumbnailWrap {
       position: relative; /* absolute는 부모가 relative일 때 부모를 따라간다. */
       width: 100%;
       padding-bottom: 56.25%; /* 16:9 비율 */
-      margin: 8px 0;
-      border: dashed rgb(85, 85, 85) 1px;
-      box-sizing: border-box;
+      margin: 16px 0;
+      
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition-property: transform;
+      transition-duration: 0.4s;
   
       .thumbnail {
         position: absolute;
@@ -31,6 +27,37 @@
         height: 100%;
         background-size: cover;
         background-position: center center;
+      }
+        
+      .thumbnailBlank {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border: dashed rgb(85, 85, 85) 1px;
+        box-sizing: border-box;
+        margin: 0 8px;
+        
+        &:hover {
+          .youtubeIcon {
+            color: $pink;
+            transform: scale(1.1);
+            border-color: $pink;
+          }
+        }
+
+        &:active {
+          .youtubeIcon {
+            transform: scale(1);
+          }
+        }
+
+        .youtubeIcon {
+          font-size: 60px;
+          transition-property: color, transform;
+          transition-duration: 0.4s, 0.4s;
+        }
       }
 
       .thumbnailHover {
