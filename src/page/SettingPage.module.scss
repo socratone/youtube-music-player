@@ -1,0 +1,68 @@
+@import '../common/color.scss';
+@import './SearchPage.module.scss';
+
+.settingUl {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+  color: $white-font;
+
+  .settingList {
+    .searchInfo {
+      margin: 0 30px;
+
+      p {
+        margin-bottom: 3px;
+      }
+    }
+
+    .thumbnailWrap {
+      position: relative; /* absolute는 부모가 relative일 때 부모를 따라간다. */
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 비율 */
+      margin: 8px 0;
+  
+      .thumbnail {
+        position: absolute;
+        width: 100%; /* 부모에 맞게 꽉 채운다. */
+        height: 100%;
+        background-size: cover;
+        background-position: center center;
+      }
+
+      .thumbnailHover {
+        position: absolute;
+        width: 100%; /* 부모에 맞게 꽉 채운다. */
+        height: 100%;
+        transition-property: background-color;
+        transition-duration: 0.4s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .playButton {
+          cursor: pointer;
+          font-size: 60px;
+          color: transparent;
+          transition-property: color, transform;
+          transition-duration: 0.4s, 0.2s;
+
+          &:hover {
+            transform: scale(1.2);
+          }
+
+          &:active {
+            transform: scale(1);
+          }
+        }
+      }
+    }
+  
+    .thumbnailTitle {
+      text-align: center;
+    }
+  }
+
+
+}

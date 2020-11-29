@@ -38,8 +38,12 @@ async function init() {
   searchPage.appendSearchResultUl(videos);
   // searchPage.show();
   searchPage.hide();
-
+  
   const settingPage = new SettingPage();
+  settingPage.setPageHeight();
+  settingPage.setPlayerPageInstance(playerPage);
+  settingPage.appendSettingUl();
+  settingPage.hide();
   
   const nav = new Nav();
   nav.append(playlistPage);
@@ -52,6 +56,7 @@ async function init() {
   screen.append(playlistPage.element);
   screen.append(playerPage.element);
   screen.append(searchPage.element);
+  screen.append(settingPage.element);
 
   playlistPage.setPlayerPageInstance(playerPage);
   searchPage.setPlayerPageInstance(playerPage);
@@ -60,6 +65,7 @@ async function init() {
     playlistPage.setPageHeight();
     playerPage.setPageHeight();
     searchPage.setPageHeight();
+    settingPage.setPageHeight();
   });
 }
 
