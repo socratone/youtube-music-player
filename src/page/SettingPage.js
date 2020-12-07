@@ -29,6 +29,7 @@ class SettingPage extends Page {
         <p>여기서도 음악을 추가할 수 있어요.</p>`;
         
       const textWrap = document.createElement('div');
+      textWrap.id = 'youtubeOpener';
       textWrap.classList.add(styles.thumbnail);
       textWrap.classList.add(styles.thumbnailBlank);
       textWrap.append(youtubeIcon);
@@ -38,9 +39,10 @@ class SettingPage extends Page {
       this.thumbnailWrap.classList.add(styles.thumbnailWrap);
       this.thumbnailWrap.style.cursor = 'pointer';
       
-      textWrap.addEventListener('click', () => {
-        window.open('https://www.youtube.com/');
-      });
+      // 일렉트론에서 yotubeOpener id를 받아 브라우저로 연다.
+      // textWrap.addEventListener('click', () => {
+      //   window.open('https://www.youtube.com/');
+      // });
      
       this.thumbnailWrap.append(textWrap);
       this.videoList.append(this.thumbnailWrap);
